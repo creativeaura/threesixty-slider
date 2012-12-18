@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>360 Degree</title>
+	<meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/360.css">
+  <style type="text/css">
+    .custom_nav_bar{
+      width: 400px;
+    }
+
+    .custom_nav_bar button {
+      float: left;
+    }
+  </style>
+</head>
+<body>
+	
+	<div id='container'>
+		
+		<div class="threesixty product1">
+			<div class="spinner">
+				<span>0%</span>
+			</div>
+			<ol class="threesixty_images"></ol>
+		</div>
+
+
+		<div class="threesixty product2">
+			<div class="spinner">
+				<span>0%</span>
+			</div>
+			<ol class="threesixty_images"></ol>
+		</div>
+
+    <div class="custom_nav_bar">
+      <button class="custom_previous">Previous</button>
+      <button class="custom_play">Play</button>
+      <button class="custom_stop">Stop</button>
+      <button class="custom_next">Next</button>
+    </div>
+	</div>
+	<script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
+	<script type="text/javascript" src='/javascripts/threesixty.js'></script>
+	
+	<script type="text/javascript">
+		window.onload = init;
+
+    var product1, product2;
+		function init(){
+
+      // var p1 = new CA.ThreeSixty.init({
+      // 	totalFrames: 72,
+      // 	endFrame: 72,
+      // 	currentFrame: 1,
+      // 	threesixty: '.product1',
+      // 	imgList: '.threesixty_images',
+      // 	progress: '.spinner',
+      // 	imagePath:'/assets/product1/',
+      // 	filePrefix: 'ipod-',
+      // 	ext: '.jpg'
+      // });
+
+      // var p2 = new CA.ThreeSixty.init({
+      // 	totalFrames: 36,
+      // 	endFrame: 36,
+      // 	currentFrame: 1,
+      // 	threesixty: '.product2',
+      // 	imgList: '.threesixty_images',
+      // 	progress: '.spinner',
+      // 	imagePath:'/assets/product2/',
+      // 	filePrefix: 'shoe-360-',
+      // 	ext: '.jpg'
+      // });
+      // console.log(p1, p2);
+
+			product1 = $('.product1').ThreeSixty({
+				totalFrames: 72,
+      	endFrame: 72,
+      	currentFrame: 1,
+      	
+      	imgList: '.threesixty_images',
+      	progress: '.spinner',
+      	imagePath:'/assets/product1/',
+      	filePrefix: 'ipod-',
+      	ext: '.jpg',
+      	height: 265,
+      	width: 400,
+        navigation: true
+			});
+      
+      product2 = $('.product2').ThreeSixty({
+				totalFrames: 36,
+      	endFrame: 72,
+      	currentFrame: 1,
+      	imgList: '.threesixty_images',
+      	progress: '.spinner',
+      	imagePath:'/assets/product2/',
+      	filePrefix: 'shoe-360-',
+      	ext: '.jpg',
+      	height: 381,
+      	width: 400
+			});
+
+      $('.custom_previous').bind('click', function(e) {
+        product2.previous();
+      });
+
+      $('.custom_next').bind('click', function(e) {
+        product2.next();
+      });
+
+      $('.custom_play').bind('click', function(e) {
+        product2.play();
+      });
+
+      $('.custom_stop').bind('click', function(e) {
+        product2.stop();
+      });
+		}
+
+		window.onerror = function( errorMsg, url, lineNumber ) {
+			console.log('[ERROR]');
+  		var e = encodeURIComponent;
+  		new Image().src = 'http://errorboard.gauravjassal.c9.io/pusherror/?message=' + e( errorMsg ) +'&url=' + e( url ) + '&line=' + e(lineNumber);
+
+  		return false;
+		};
+
+	</script>
+
+</body>
+</html>
+

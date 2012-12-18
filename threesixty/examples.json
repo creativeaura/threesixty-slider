@@ -1,0 +1,28 @@
+  [
+      {
+        "title": "360 Slider Examples",
+        "items": [
+          {
+	          "name": "default-controls",
+	          "title": "Default Controls",
+	          "description": "360 Slider with default Controlls",
+	          "url": "default_control.html",
+	          "icon": "icon.png"
+          },
+          {
+            "name": "custom-controls",
+            "title": "Custom Controls",
+            "description": "360 Slider with custom Controlls",
+            "url": "custom_controls.html",
+            "icon": "icon.png"
+          },
+          {
+            "name": "multiple-controls",
+            "title": "Multiple Slider",
+            "description": "Multiple 360 sliders on one page.",
+            "url": "multiple_sliders.html",
+            "icon": "icon.png"
+          }
+        ]
+      }
+  ]

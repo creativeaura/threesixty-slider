@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>360 Degree</title>
+	<meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="assets/stylesheets/360.css">
+  <link rel="stylesheet" href="assets/stylesheets/prism.css">
+  <style type="text/css">
+    body, h1, h2{
+      font-family: "Arial, Helvetica, sans-serif";
+    }
+    .custom_nav_bar{
+      width: 400px;
+    }
+
+    .custom_nav_bar button {
+      float: left;
+    }
+  </style>
+</head>
+<body>
+
+	<div id='container'>
+		<h1>360 Slider with Custom Controls</h1>
+  	<div class="threesixty product2">
+      <div class="spinner">
+        <span>0%</span>
+      </div>
+      <ol class="threesixty_images"></ol>
+    </div>
+
+    <div class="custom_nav_bar">
+      <button class="custom_previous">Previous</button>
+      <button class="custom_play">Play</button>
+      <button class="custom_stop">Stop</button>
+      <button class="custom_next">Next</button>
+    </div>
+    <br/>
+    <h2>Markup</h2>
+    <pre>
+      <code class="language-markup">
+        &lt;div class="threesixty product2">
+          &lt;div class="spinner">
+            &lt;span>0%&lt;/span>
+          &lt;/div>
+          &lt;ol class="threesixty_images">&lt;/ol>
+        &lt;/div>
+      </code>
+    </pre>
+
+    <h2>Javascript</h2>
+    <pre><code class="language-javascript">
+      window.onload = init;
+
+      var product;
+      function init(){
+
+        product2 = $('.product2').ThreeSixty({
+        totalFrames: 36,
+        endFrame: 72,
+        currentFrame: 1,
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'/assets/product2/',
+        filePrefix: 'shoe-360-',
+        ext: '.jpg',
+        height: 381,
+        width: 400
+      });
+
+      $('.custom_previous').bind('click', function(e) {
+        product2.previous();
+      });
+
+      $('.custom_next').bind('click', function(e) {
+        product2.next();
+      });
+
+      $('.custom_play').bind('click', function(e) {
+        product2.play();
+      });
+
+      $('.custom_stop').bind('click', function(e) {
+        product2.stop();
+      });
+
+      }
+    </code></pre>
+	</div>
+	<script type="text/javascript" src="assets/javascripts/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="assets/javascripts/prism.js"></script>
+	<script type="text/javascript" src='src/threesixty.js'></script>
+
+	<script type="text/javascript">
+		window.onload = init;
+
+      var product;
+      function init(){
+
+        product2 = $('.product2').ThreeSixty({
+        totalFrames: 36,
+        endFrame: 72,
+        currentFrame: 1,
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'/assets/product2/',
+        filePrefix: 'shoe-360-',
+        ext: '.jpg',
+        height: 381,
+        width: 400
+      });
+
+      $('.custom_previous').bind('click', function(e) {
+        product2.previous();
+      });
+
+      $('.custom_next').bind('click', function(e) {
+        product2.next();
+      });
+
+      $('.custom_play').bind('click', function(e) {
+        product2.play();
+      });
+
+      $('.custom_stop').bind('click', function(e) {
+        product2.stop();
+      });
+    }
+	</script>
+
+</body>
+</html>
+
