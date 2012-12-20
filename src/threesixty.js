@@ -127,19 +127,6 @@
         marginTop: ((AppCongif.height / 2) - 15) + 'px'
       });
 
-      try {
-        cl = new CanvasLoader($(AppCongif.progress).attr('id'));
-        cl.setColor('#000000');
-        cl.setDiameter(52);
-        cl.setDensity(58);
-        cl.setRange(0.7);
-        cl.setFPS(25);
-        cl.show();
-      } catch (error) {
-
-        throw "CanvasLoader not found";
-      }
-
       base.$el.find(AppCongif.progress).fadeIn("slow");
 
       base.$el.find(AppCongif.imgList).hide();
