@@ -50,20 +50,20 @@
 
 <pre><code>window.onload = init;
 
-var product;
+var car;
 function init(){
 
-    product1 = $('.product1').ThreeSixty({
-        totalFrames: 72, // Total no. of image you have for 360 slider
-        endFrame: 72, // end frame for the auto spin animation
+    car = $('.car').ThreeSixty({
+        totalFrames: 52, // Total no. of image you have for 360 slider
+        endFrame: 52, // end frame for the auto spin animation
         currentFrame: 1, // This the start frame for auto spin
         imgList: '.threesixty_images', // selector for image list
         progress: '.spinner', // selector to show the loading progress
-        imagePath:'assets/product1/', // path of the image assets
-        filePrefix: 'ipod-', // file prefix if any
-        ext: '.jpg', // extention for the assets
-        height: 265,
-        width: 400,
+        imagePath:'assets/car/', // path of the image assets
+        filePrefix: '', // file prefix if any
+        ext: '.png', // extention for the assets
+        height: 960,
+        width: 447,
         navigation: true
     });
 
@@ -72,7 +72,7 @@ function init(){
 
 <h3>HTML Snippet</h3>
 
-<pre><code>&lt;div class="threesixty product1"&gt;
+<pre><code>&lt;div class="threesixty car"&gt;
     &lt;div class="spinner"&gt;
         &lt;span&gt;0%&lt;/span&gt;
     &lt;/div&gt;
