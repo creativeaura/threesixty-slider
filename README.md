@@ -37,5 +37,6 @@ Example 1
 	</div>
 Here we are initializing an image slider for product 1. The ThreeSixty class constructor require a config object with properties like totalFrame, endFrame and currentFrame
 
-Demo coming soon
+Demo
 ---------------------
+[Here is the link for the demo](http://creativeaura.github.com/threesixty-slider)
