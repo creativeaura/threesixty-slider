@@ -1,4 +1,4 @@
-![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/assets/images/360_icon.png)
+![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 Three Sixty Image slider plugin
 =================
 
