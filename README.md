@@ -41,3 +41,10 @@ Here we are initializing an image slider for product 1. The ThreeSixty class con
 Demo
 ---------------------
 [Here is the link for the demo](http://creativeaura.github.com/threesixty-slider)
+
+LICENSE
+---------
+
+Copyright 2012-2013 Gaurav Jassal
+
+Released under the MIT and GPL Licenses.
