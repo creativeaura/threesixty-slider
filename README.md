@@ -7,7 +7,7 @@ This as jQuery plugin to create 360 degree product image slider. The plugin is f
 Example 1
 ---------------------
 ### Javascript ######
-	window.onload = init;
+    window.onload = init;
 
     var product;
     function init(){
@@ -31,16 +31,25 @@ Example 1
 ### HTML Snippet ######
 
     <div class="threesixty product1">
-		<div class="spinner">
-			<span>0%</span>
-		</div>
-		<ol class="threesixty_images"></ol>
-	</div>
+        <div class="spinner">
+            <span>0%</span>
+        </div>
+        <ol class="threesixty_images"></ol>
+    </div>
 Here we are initializing an image slider for product 1. The ThreeSixty class constructor require a config object with properties like totalFrame, endFrame and currentFrame
 
 Demo
 ---------------------
 [Here is the link for the demo](http://creativeaura.github.com/threesixty-slider)
+
+More demos comming soon.
+
+Support
+---------------------
+For support and question please contact at
+[gaurav@jassal.me](mailto:gaurav@jassal.me) or follow at
+[@gauravjassal](http://twitter.com/gauravjassal)
+
 
 LICENSE
 ---------
