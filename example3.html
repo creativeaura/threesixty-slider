@@ -6,6 +6,7 @@
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/nouislider.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="assets/stylesheets/360.css" />
     <!--[if lt IE 9]>
@@ -34,10 +35,10 @@
         <section id="main_content">
           <nav class="horizontal-nav full-width horizontalNav-notprocessed">
             <ul>
-              <li><a href="/" class="current">Example 1 Default Settings</a></li>
+              <li><a href="/">Example 1 Default Settings</a></li>
               <li><a href="/example1.html">Example 2 Custom controls </a></li>
               <li><a href="/example2.html">Multiple Sliders in one page</a></li>
-              <li><a href="/example3.html">No Drag with Scrollbar</a></li>
+              <li><a href="/example3.html" class="current">No Drag with Scrollbar</a></li>
             </ul>
           </nav>
 
@@ -53,6 +54,12 @@
         <span>0%</span>
     </div>
     <ol class="threesixty_images"></ol>
+  </div>
+</div>
+<p>Move drag is disabled but you can control the movement with the slider.</p>
+<div class="slider">
+  <div id="nouislider" class="noUiSlider">
+
   </div>
 </div>
 <h3>Javascript</h3>
@@ -103,6 +110,7 @@ function init(){
         </footer>
           <script type="text/javascript" src="assets/javascripts/jquery-1.8.3.min.js"></script>
           <script type="text/javascript" src="assets/javascripts/jquery.horizontalNav.js"></script>
+          <script type="text/javascript" src="assets/javascripts/jquery.nouislider.min.js"></script>
           <script src="src/threesixty.js"></script>
           <script>
             window.onload = init;
@@ -121,9 +129,19 @@ function init(){
                   ext: '.png', // extention for the assets
                   height: 447,
                   width: 1000,
-                  navigation: true
+                  navigation: false,
+                  drag: false
               });
-
+              $('#nouislider').noUiSlider('init', {
+                handles: 1,
+                value: 1,
+                connect: "lower",
+                change: function() {
+                  var values = $(this).noUiSlider( 'value' )[1];
+                  frame = Math.round(52 * values / 100);
+                  car.gotoAndPlay(frame);
+                }
+              });
               $('.full-width').horizontalNav({});
             }
           </script>
