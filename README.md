@@ -56,6 +56,6 @@ For support and question please contact at
 LICENSE
 ---------
 
-Copyright 2012-2013 Gaurav Jassal
+Copyright 2013 Gaurav Jassal
 
 Released under the MIT and GPL Licenses.
