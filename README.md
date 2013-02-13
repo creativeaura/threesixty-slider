@@ -40,9 +40,11 @@ Here we are initializing an image slider for product 1. The ThreeSixty class con
 
 Demo
 ---------------------
-[Here is the link for the demo](http://creativeaura.github.com/threesixty-slider)
+- [Example 1 Default Settings](http://creativeaura.github.com/threesixty-slider)
+- [Example 2 Custom controls](http://creativeaura.github.com/threesixty-slider/example1.html)
+- [Multiple Sliders in one page](http://creativeaura.github.com/threesixty-slider/example2.html)
+- [No Drag with Scrollbar](http://creativeaura.github.com/threesixty-slider/example3.html)
 
-More demos comming soon.
 
 Support
 ---------------------
