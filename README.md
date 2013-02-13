@@ -48,9 +48,7 @@ Demo
 
 Support
 ---------------------
-For support and question please contact at
-[gaurav@jassal.me](mailto:gaurav@jassal.me) or follow at
-[@gauravjassal](http://twitter.com/gauravjassal)
+For support and question please contact at [gaurav@jassal.me](mailto:gaurav@jassal.me) or follow at [@gauravjassal](http://twitter.com/gauravjassal)
 
 
 LICENSE
