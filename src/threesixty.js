@@ -311,7 +311,11 @@
      *
      */
     base.moveToNextFrame = function () {
-      AppCongif.endFrame -= 1;
+      if (AppCongif.autoplayDirection === 1) {
+        AppCongif.endFrame -= 1;
+      } else {
+        AppCongif.endFrame += 1;
+      }
       base.refresh();
     };
 
@@ -595,7 +599,12 @@
      * @cfg {Boolean} autoplay[false]
      * Autoplay the 360 animation
      */
-    autoplay: false
+    autoplay: false,
+    /**
+     * @cfg {number} autoplayDirection [1]
+     * Direction for autoplay the 360 animation. 1 for right spin, and -1 for left spin.
+     */
+    autoplayDirection: 1
   };
 
   $.fn.ThreeSixty = function (options) {
