@@ -72,7 +72,7 @@ Here are the list of config value you can pass in while you initilize your 360 s
 
 <table>
   <tr>
-    <th>Config</th><th>Default Values</th><th>Type</th><th>Description</th>
+    <th>Config</th><th>Default value</th><th>Type</th><th>Description</th>
   </tr>
   <tr>
     <td>totalFrames</td><td>180</td><td>Number</td><td>Set total number for frames used in the 360 rotation</td>
