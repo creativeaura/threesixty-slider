@@ -120,6 +120,12 @@ Demo
 - [Multiple Sliders in one page](http://creativeaura.github.com/threesixty-slider/example2.html)
 - [No Drag with Scrollbar](http://creativeaura.github.com/threesixty-slider/example3.html)
 
+Browser Supported
+---------------------
+![Browser Supported](https://raw.github.com/creativeaura/threesixty-slider/master/images/browser_logos-64.png)
+
+This plugin is supported in all browsers including our beloved IE 6
+
 
 Support
 ---------------------
