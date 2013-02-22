@@ -119,6 +119,7 @@ Demo
 - [Example 2 Custom controls](http://creativeaura.github.com/threesixty-slider/example1.html)
 - [Multiple Sliders in one page](http://creativeaura.github.com/threesixty-slider/example2.html)
 - [No Drag with Scrollbar](http://creativeaura.github.com/threesixty-slider/example3.html)
+- [Live Editor](http://creativeaura.github.com/threesixty-slider/editor.html)
 
 Browsers Supported
 ---------------------
