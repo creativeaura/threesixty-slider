@@ -9,10 +9,18 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="assets/stylesheets/360.css" />
     <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheets/codemirror.css">
+    <link rel="stylesheet" href="theme/monokai.css">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <title>Threesixty-slider by creativeaura</title>
+    <style>
+      #liveEditor {
+        width:100%;
+        height:400px;
+      }
+    </style>
   </head>
 
   <body>
@@ -35,61 +43,49 @@
         <section id="main_content">
           <nav class="horizontal-nav full-width horizontalNav-notprocessed">
             <ul>
-              <li><a href="/threesixty-slider/" class="current">Default Settings</a></li>
+              <li><a href="/threesixty-slider/">Default Settings</a></li>
               <li><a href="/threesixty-slider/example1.html">Custom controls </a></li>
               <li><a href="/threesixty-slider/example2.html">Multiple Sliders in one page</a></li>
               <li><a href="/threesixty-slider/example3.html">No Drag with Scrollbar</a></li>
-              <li><a href="/threesixty-slider/editor.html">Live Editor <i class="icon-edit"></i></a></li>
+              <li><a href="/threesixty-slider/editor.html" class="current">Live Editor <i class="icon-edit"></i></a></li>
             </ul>
           </nav>
 
-          <h1>Three Sixty Image slider plugin</h1>
+          <h1>Try different config option in our live editor</h1>
 
-<p>This is a jQuery plugin to create 360 degree product image slider. The plugin is full customizable with number of options provided. The plugin have the power to display images in any angle 360 degrees. This feature can be used successfully in many use cases e.g. on an e-commerce site to help customers look products in detail, from any angle they desire.</p>
+<p>You can try changing different config option to preview how your set of 360 image will look.</p>
+<h2>Live Editor</h2>
+<div id="liveEditorContainer">
+  <textarea name="liveEditor" id="liveEditor" cols="30" rows="10">
+  var threeSixty;
 
-<h2>Example 1 Default Settings</h2>
-
-<div class="car_container">
-  <div class="threesixty car">
+  threeSixty = $('.boot').ThreeSixty({
+    totalFrames: 26, // Change totalFrames to 52
+    endFrame: 26, // endFrame to 28
+    currentFrame: 1,
+    imgList: '.threesixty_images',
+    progress: '.spinner',
+    imagePath:'assets/boots/', // imagePath to assets/car/
+    filePrefix: 'nike_calcio_', // filePrefix to ''
+    ext: '.jpg', // ext to .png
+    height: 338, // height to 447
+    width: 600, //width to 1000
+    navigation: true // navigation to false
+  });</textarea>
+</div>
+<div class="custom_nav_bar">
+  <button class="custom_preview btn">Preview <i class="icon-magic"></i></button>
+</div>
+<h2>Preview</h2>
+<div class="boot_container">
+  <div class="threesixty boot">
     <div class="spinner">
         <span>0%</span>
     </div>
     <ol class="threesixty_images"></ol>
   </div>
 </div>
-<h3>Javascript</h3>
 
-<pre><code>window.onload = init;
-
-var car;
-function init(){
-
-    car = $('.car').ThreeSixty({
-        totalFrames: 52, // Total no. of image you have for 360 slider
-        endFrame: 52, // end frame for the auto spin animation
-        currentFrame: 1, // This the start frame for auto spin
-        imgList: '.threesixty_images', // selector for image list
-        progress: '.spinner', // selector to show the loading progress
-        imagePath:'assets/car/', // path of the image assets
-        filePrefix: '', // file prefix if any
-        ext: '.png', // extention for the assets
-        height: 1000,
-        width: 447,
-        navigation: true
-    });
-
-}
-</code></pre>
-
-<h3>HTML Snippet</h3>
-
-<pre><code>&lt;div class="threesixty car"&gt;
-    &lt;div class="spinner"&gt;
-        &lt;span&gt;0%&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;ol class="threesixty_images"&gt;&lt;/ol&gt;
-&lt;/div&gt;
-</code></pre>
 
 <p>Here we are initializing an image slider for car model. The ThreeSixty class constructor require a config object with properties like totalFrame, endFrame and currentFrame</p>
 
@@ -106,27 +102,43 @@ function init(){
           <script type="text/javascript" src="assets/javascripts/jquery-1.8.3.min.js"></script>
           <script type="text/javascript" src="assets/javascripts/jquery.horizontalNav.js"></script>
           <script src="src/threesixty.js"></script>
+          <script src="javascripts/codemirror.js"></script>
+          <script src="javascripts/javascript/javascript.js"></script>
           <script>
             window.onload = init;
 
-            var car;
+            var threeSixty;
             function init(){
 
-              car = $('.car').ThreeSixty({
-                  totalFrames: 52, // Total no. of image you have for 360 slider
-                  endFrame: 52, // end frame for the auto spin animation
+              threeSixty = $('.boot').ThreeSixty({
+                  totalFrames: 26, // Total no. of image you have for 360 slider
+                  endFrame: 26, // end frame for the auto spin animation
                   currentFrame: 1, // This the start frame for auto spin
                   imgList: '.threesixty_images', // selector for image list
                   progress: '.spinner', // selector to show the loading progress
-                  imagePath:'assets/car/', // path of the image assets
-                  filePrefix: '', // file prefix if any
-                  ext: '.png', // extention for the assets
-                  height: 447,
-                  width: 1000,
+                  imagePath:'assets/boots/', // path of the image assets
+                  filePrefix: 'nike_calcio_', // file prefix if any
+                  ext: '.jpg', // extention for the assets
+                  height: 338,
+                  width: 600,
                   navigation: true
               });
 
               $('.full-width').horizontalNav({});
+
+              var myCodeMirror = CodeMirror.fromTextArea(document.getElementById('liveEditor'),{
+                value: "function myScript(){return 100;}\n",
+                mode:  "javascript",
+                theme : 'monokai',
+                tabSize :2,
+                lineNumbers: true
+             });
+              
+              $('.custom_preview').bind('click', function(e) {
+                e.preventDefault();
+                $('.boot_container').empty().html('<div class="threesixty boot"><div class="spinner"><span>0%</span></div><ol class="threesixty_images"></ol></div>');
+                eval(myCodeMirror.getValue());
+              });
             }
           </script>
           <script type="text/javascript">
