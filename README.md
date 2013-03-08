@@ -5,7 +5,7 @@ Three Sixty Image slider plugin
 
 This is a jQuery plugin to create 360 degree product image slider. The plugin is full customizable with number of options provided. The plugin have the power to display images in any angle 360 degrees. This feature can be used successfully in many use cases e.g. on an e-commerce site to help customers look products in detail, from any angle they desire.
 
-Example 1 
+Example 1
 ---------------------
 ### Javascript ######
     window.onload = init;
@@ -19,7 +19,7 @@ Example 1
             currentFrame: 1, // This the start frame for auto spin
             imgList: '.threesixty_images', // selector for image list
             progress: '.spinner', // selector to show the loading progress
-            imagePath:'/assets/product1/', // path of the image assets
+            imagePath:'assets/product1/', // path of the image assets
             filePrefix: 'ipod-', // file prefix if any
             ext: '.jpg', // extention for the assets
             height: 265,
@@ -44,7 +44,7 @@ Documentation
 ---------------------
 ##### Methods
 
-Public methods to control the slider after initialization. 
+Public methods to control the slider after initialization.
 <table>
   <tr>
     <th>Method Name</th><th>Description</th>
