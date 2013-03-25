@@ -65,11 +65,11 @@
     currentFrame: 1,
     imgList: '.threesixty_images',
     progress: '.spinner',
-    imagePath:'assets/boots/', // imagePath to assets/car/
-    filePrefix: 'nike_calcio_', // filePrefix to ''
-    ext: '.jpg', // ext to .png
-    height: 338, // height to 447
-    width: 600, //width to 1000
+    imagePath:'assets/car/', // imagePath to assets/car/
+    filePrefix: '', // filePrefix to ''
+    ext: '.png', // ext to .png
+    height: 447, // height to 447
+    width: 1000, //width to 1000
     navigation: true // navigation to false
   });</textarea>
 </div>
@@ -116,11 +116,11 @@
                   currentFrame: 1, // This the start frame for auto spin
                   imgList: '.threesixty_images', // selector for image list
                   progress: '.spinner', // selector to show the loading progress
-                  imagePath:'assets/boots/', // path of the image assets
-                  filePrefix: 'nike_calcio_', // file prefix if any
-                  ext: '.jpg', // extention for the assets
-                  height: 338,
-                  width: 600,
+                  imagePath:'assets/car/', // path of the image assets
+                  filePrefix: '', // file prefix if any
+                  ext: '.png', // extention for the assets
+                  height: 447,
+                  width: 1000,
                   navigation: true
               });
 
@@ -133,7 +133,7 @@
                 tabSize :2,
                 lineNumbers: true
              });
-              
+
               $('.custom_preview').bind('click', function(e) {
                 e.preventDefault();
                 $('.boot_container').empty().html('<div class="threesixty boot"><div class="spinner"><span>0%</span></div><ol class="threesixty_images"></ol></div>');
