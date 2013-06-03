@@ -1,0 +1,13 @@
+{
+  "name": "threesixty-slider",
+  "version": "1.0.1",
+  "ignore": [
+    ".jshintrc",
+    ".editorconfig",
+    ".bowerrc"
+  ],
+  "dependencies": {
+    "uglify-js": "~2.3.6"
+  },
+  "devDependencies": {}
+}
