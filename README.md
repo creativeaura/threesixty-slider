@@ -24,7 +24,8 @@ Example 1
             ext: '.jpg', // extention for the assets
             height: 265,
             width: 400,
-            navigation: true
+            navigation: true,
+            disableSpin: true // Default false
         });
 
     }
@@ -110,6 +111,9 @@ Here are the list of config value you can pass in while you initilize your 360 s
   </tr>
 <tr>
     <td>dragging</td><td>true</td><td>Boolean</td><td>Set false if you want to disable mouse and touch events on the slider.</td>
+  </tr>
+  <tr>
+    <td>disableSpin</td><td>false</td><td>Boolean</td><td>Will disable the initial spin on load</td>
   </tr>
 </table>
 
