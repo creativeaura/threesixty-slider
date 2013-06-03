@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.0
+ * 360 degree Image Slider v1.0.1
  * http://gaurav.jassal.me/#360
  *
  * Copyright 2012, gaurav@jassal.me
@@ -12,7 +12,6 @@
 
 (function ($) {
   "use strict";
-
    /**
    * @class ThreeSixty
    * **The ThreeSixty slider class**.
@@ -105,6 +104,10 @@
       AppCongif = $.extend({}, $.ThreeSixty.defaultOptions, options);
       if (!AppCongif.parallel) {
         base.loadImages();
+      }
+      if(AppCongif.disableSpin) {
+				AppCongif.currentFrame = 1;
+				AppCongif.endFrame = 2;
       }
       base.initProgress();
     };
@@ -604,7 +607,12 @@
      * @cfg {number} autoplayDirection [1]
      * Direction for autoplay the 360 animation. 1 for right spin, and -1 for left spin.
      */
-    autoplayDirection: 1
+    autoplayDirection: 1,
+    /**
+     * Property to disable auto spin
+     * @type {Boolean}
+     */
+    disableSpin: false
   };
 
   $.fn.ThreeSixty = function (options) {
