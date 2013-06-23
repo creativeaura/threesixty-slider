@@ -2,10 +2,10 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.1
- * http://gaurav.jassal.me/#360
+ * 360 degree Image Slider v1.0.2
+ * http://gaurav.jassal.me/lab
  *
- * Copyright 2012, gaurav@jassal.me
+ * Copyright 2013, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
  *
  */
@@ -61,7 +61,7 @@
   $.ThreeSixty = function (el, options) {
     // To avoid scope issues, use 'base' instead of 'this'
     // to reference this class from internal events and functions.
-    var base = this, AppCongif, frames = [];
+    var base = this, AppCongif, frames = [], VERSION = '1.0.2';
 
     // Access to jQuery and DOM versions of element
     /**
@@ -107,7 +107,7 @@
       }
       if(AppCongif.disableSpin) {
 				AppCongif.currentFrame = 1;
-				AppCongif.endFrame = 2;
+				AppCongif.endFrame = 1;
       }
       base.initProgress();
     };
@@ -614,6 +614,7 @@
      */
     disableSpin: false
   };
+
 
   $.fn.ThreeSixty = function (options) {
     return Object.create(new $.ThreeSixty(this, options));
