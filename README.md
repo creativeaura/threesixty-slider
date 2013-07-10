@@ -1,5 +1,7 @@
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
+> New version for threesixty slider will be realease on 21-07-2013 with all bug fixed and add features and plugins.
+
 Three Sixty Image slider plugin
 =================
 
