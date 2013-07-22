@@ -1,6 +1,5 @@
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
-> New version for threesixty slider will be realease on 21-07-2013 with all bug fixed and add features and plugins.
 
 Three Sixty Image slider plugin
 =================
@@ -116,6 +115,12 @@ Here are the list of config value you can pass in while you initilize your 360 s
   </tr>
   <tr>
     <td>disableSpin</td><td>false</td><td>Boolean</td><td>Will disable the initial spin on load</td>
+  </tr>
+  <tr>
+    <td>zeroPadding</td><td>false</td><td>Boolean</td><td>true will add 0 padding for file names 1 - 9</td>
+  </tr>
+  <tr>
+    <td>responsive</td><td>false</td><td>Boolean</td><td>Enable responsive width for 360</td>
   </tr>
 </table>
 

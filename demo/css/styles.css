@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Custom Styles
+   ========================================================================== */
+
+
+#main {
+	margin-top: 100px;
+}
+
+.video-container {
+	border-radius: 10px;
+}
+.video-container .demo_video{
+	margin: 50px 0;
+}
+
+#container{
+  margin-top: 120px;
+  min-height: 450px
+}
+
+#social-buttons {
+  padding: 10px 0;
+}
+
+#social-buttons .social {
+  margin: 0 auto;
+  width:530px;
+}

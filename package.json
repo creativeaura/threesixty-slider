@@ -1,7 +1,7 @@
 {
   "name": "threesixty-slider",
   "description": "360 degree Image Slider",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "ignore": [
     ".jshintrc",
     ".editorconfig",
@@ -11,6 +11,8 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-connect": "~0.3.0"
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-contrib-watch": "~0.4.4"
   }
 }

@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>Threesixty Slider</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="../styles/threesixty.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Threesixty Slider</a>
+          <div class="navbar-content">
+            <ul class="nav pull-right">
+              <li>
+                <a href="default_control.html">Default Settings</a>
+              </li>
+              <li>
+                <a href="multiple_sliders.html">Multiple Slider</a>
+              </li>
+              <li>
+                <a href="custom_controls.html">Custom Controls</a>
+              </li>
+              <li class="active">
+                <a href="responsive.html">Responsive Slider</a>
+              </li>
+              <li>
+                <a href="full_page_scrolling.html">Full Page Scrolling</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="container-fluid" id="container">
+      <div class="threesixty product1">
+        <div class="spinner">
+          <span>0%</span>
+        </div>
+        <ol class="threesixty_images"></ol>
+      </div>
+    </section>
+    <section class="code container-fluid">
+      <h3>HTML Snippet</h3>
+
+<pre><code class="language-markup">&lt;div class="threesixty car"&gt;
+    &lt;div class="spinner"&gt;
+        &lt;span&gt;0%&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;ol class="threesixty_images"&gt;&lt;/ol&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3>Javascript</h3>
+
+<pre><code class="language-javascript">window.onload = init;
+
+var car;
+function init(){
+
+    car = $('.car').ThreeSixty({
+        totalFrames: 52, // Total no. of image you have for 360 slider
+        endFrame: 52, // end frame for the auto spin animation
+        currentFrame: 1, // This the start frame for auto spin
+        imgList: '.threesixty_images', // selector for image list
+        progress: '.spinner', // selector to show the loading progress
+        imagePath:'assets/car/', // path of the image assets
+        filePrefix: '', // file prefix if any
+        ext: '.png', // extention for the assets
+        height: 1000,
+        width: 447,
+        navigation: true,
+        responsive: true
+    });
+
+}
+</code></pre>
+</section>
+    <section id="twitter">
+      <div class="container">
+        <div class="row">
+          <div class="span12 text-center">
+            <a class="btn btn-inverse btn-large"><i class="icon-github icon-large"> </i> View on Github</a>
+            <a class="btn btn-large btn-danger"><i class="icon-download icon-large" > </i> Download v1.0.2</a>
+            <p class="dark-text">This is a jQuery plugin to create 360 degree product image slider. The plugin is full customizable with number of options provided. The plugin have the power to display images in any angle 360 degrees. This feature can be used successfully in many use cases e.g. on an e-commerce site to help customers look products in detail, from any angle they desire.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </section>
+    <section id="bottom">
+      <div class="container" id="social-buttons">
+        <ul class="unstyled inline social">
+          <li>
+            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=creativeaura&repo=threesixty-slider&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+          </li>
+          <li>
+            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=creativeaura&repo=threesixty-slider&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="102px" height="20px"></iframe>
+          </li>
+          <li class="follow-btn">
+            <a href="https://twitter.com/intent/tweet?screen_name=gauravjassal" class="twitter-mention-button" data-related="gauravjassal">Tweet to @gauravjassal</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          </li>
+          <li class="tweet-btn hidden-phone">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="gauravjassal">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container">
+        <div class="row margin-40">
+          <div class="span10 offset1 text-center">
+            <p>For support and question please contact at    <a href="mailto:gaurav@jassal.me"><i class="icon-envelope-alt"></i> gaurav@jassal.me</a></p>
+            <hr>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span10 offset1 text-center">
+            <h3>This plugin is supported in all browsers including our beloved IE 6</h3>
+            <img src="img/browsers.png" alt="Firebox Safari Chrome IE Opera">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+      </div>
+      <div class="modal-body">
+        <p>One fine body…</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+
+    <section id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="span12 text-center">
+            <p>&copy; Copyright. All Rights Reserved. Created by <a href="http://gaurav.jassal.me">Gaurav Jassal. </a> <a href="http://360slider.mit-license.org" id="licence">
+              Released under the MIT and GPL Licenses</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src='../src/threesixty.js'></script>
+    <script type="text/javascript" src="js/prism.js"></script>
+    <script type="text/javascript">
+    window.onload = init;
+
+    var product;
+    function init(){
+
+      product1 = $('.product1').ThreeSixty({
+        totalFrames: 52,
+        endFrame: 52,
+        currentFrame: 1,
+
+        imgList: '.threesixty_images',
+        progress: '.spinner',
+        imagePath:'img/car/',
+        filePrefix: '',
+        ext: '.png',
+        height: 447,
+        width: 1000,
+        navigation: true,
+        responsive: true
+      });
+
+    }
+
+  </script>
+  </body>
+
+</html>

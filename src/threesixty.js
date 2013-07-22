@@ -123,9 +123,13 @@
     base.initProgress = function() {
       base.$el.css({
         width: AppCongif.width + "px",
-        height: AppCongif.height + "px"
+        height: AppCongif.height + "px",
+        "background-image": "none !important"
       }).css(AppCongif.styles);
 
+      if(AppCongif.responsive) {
+         base.$el.css({ width: "100%" });
+      }
       base.$el.find(AppCongif.progress).css({
         marginTop: ((AppCongif.height / 2) - 15) + 'px'
       });
@@ -143,7 +147,7 @@
     base.loadImages = function() {
       var li, imageName, image, host;
       li = document.createElement('li');
-      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + (AppCongif.loadedImages + 1) + AppCongif.ext + (($.browser.msie) ? '?' + new Date().getTime() : '');
+      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + 1)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
@@ -164,7 +168,9 @@
       AppCongif.loadedImages += 1;
       $(AppCongif.progress + " span").text(Math.floor(AppCongif.loadedImages / AppCongif.totalFrames * 100) + '%');
       if (AppCongif.loadedImages >= AppCongif.totalFrames) {
-        frames[0].removeClass("previous-image").addClass("current-image");
+        if(AppCongif.disableSpin) {
+          frames[0].removeClass("previous-image").addClass("current-image");
+        }
         $(AppCongif.progress).fadeOut("slow", function () {
           $(this).hide();
           base.showImages();
@@ -185,7 +191,6 @@
      * - Initilizes mouse intraction events
      */
     base.showImages = function () {
-      base.$el.css("background-image", 'none');
       base.$el.find('.txtC').fadeIn();
       base.$el.find(AppCongif.imgList).fadeIn();
       AppCongif.ready = true;
@@ -277,7 +282,7 @@
      */
     base.previous = function(event) {
       if (event) { event.preventDefault(); }
-      AppCongif.endFrame += 1;
+      AppCongif.endFrame += 5;
       base.refresh();
     };
 
@@ -323,6 +328,17 @@
     };
 
     /**
+     * @method gotoAndPlay
+     * @public
+     * Function animates to previous frame
+     *
+     */
+    base.gotoAndPlay = function (n) {
+      AppCongif.endFrame = n;
+      base.refresh();
+    };
+
+    /**
      * @method initEvents
      * @private
      * Function initilizes all the mouse and touch events for 360 slider movement.
@@ -342,7 +358,7 @@
           AppCongif.dragging = false;
         }
         if (event.type === 'click' && !$.browser.msie) {
-          base.$el.css("cursor", "url(assets/images/hand_closed.png), auto");
+          //base.$el.css("cursor", "url(img/images/hand_closed.png), auto");
         }
       });
 
@@ -356,11 +372,11 @@
         if (AppCongif.dragging) {
           event.preventDefault();
           if(!$.browser.msie) {
-            base.$el.css("cursor", "url(assets/images/hand_closed.png), auto");
+            //base.$el.css("cursor", "url(assets/images/hand_closed.png), auto");
           }
         } else {
           if(!$.browser.msie) {
-            base.$el.css("cursor", "url(assets/images/hand_open.png), auto");
+            //base.$el.css("cursor", "url(assets/images/hand_open.png), auto");
           }
         }
         base.trackPointer(event);
@@ -463,6 +479,23 @@
       }
       return c;
     };
+    /**
+     * Function to return with zero padding.
+     */
+    base.zeroPad = function (num) {
+        return ((+num < 10 && AppCongif.zeroPadding) ? "0" : "") + num;
+    };
+
+    base.browser = {};
+
+    /**
+     * Function to detect if the brower is IE
+     * @return {boolean}
+     */
+    base.browser.isIE = function () {
+      return /MSIE (\d+\.\d+);/.test(navigator.userAgent);
+    };
+
     base.init();
   };
 
@@ -612,7 +645,18 @@
      * Property to disable auto spin
      * @type {Boolean}
      */
-    disableSpin: false
+    disableSpin: false,
+    /**
+     * Responsive width
+     * @type {Boolean}
+     */
+    responsive: false,
+    /**
+     * Zero Padding for filenames
+     * @type {Boolean}
+     */
+    zeroPadding: false
+
   };
 
 
