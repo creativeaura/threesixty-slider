@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       css: {
         files: 'styles/*.less',
         tasks: ['less']
-      },
+      }
     }
   });
 

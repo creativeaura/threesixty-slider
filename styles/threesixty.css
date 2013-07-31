@@ -69,3 +69,19 @@
 #container .threesixty .nav_bar a.nav_bar_next {
   background-position: 0 -104px;
 }
+/* html */
+#container:-webkit-full-screen {
+  background: #ffffff;
+}
+#container:-moz-full-screen {
+  background: #ffffff;
+}
+#container:-ms-full-screen {
+  background: #ffffff;
+}
+#container:-o-full-screen {
+  background: #ffffff;
+}
+#container:full-screen {
+  background: #ffffff;
+}

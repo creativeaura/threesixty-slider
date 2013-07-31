@@ -17,7 +17,8 @@
     var plugin = this,
       $el = el,
       opts = options,
-      $button = $('<a href="#">Fullscreen</a>');
+      $button = $('<a href="#">Fullscreen</a>'),
+      isFullscreen = false;
 
     // Attach event to the plugin
     $button.bind('click', function(event) {
@@ -38,7 +39,8 @@
         'height': '20px',
         'text-indent': '-99999px',
         'right': '5px',
-        'bottom': '5px'
+        'bottom': '5px',
+        'background-position': '0px -20px'
       });
       return this;
     };
@@ -53,9 +55,66 @@
     };
 
     plugin.onClickHandler = function(e) {
+      var elem;
+      if(typeof $el.attr('id') !== 'undefined') {
+        elem = document.getElementById($el.attr('id'));
+      } else if(typeof $el.parent().attr('id') !== 'undefined'){
+        elem = document.getElementById($el.parent().attr('id'));
+      } else {
+        return false;
+      }
 
+      plugin.toggleFullscreen(elem);
     };
 
+    plugin.toggleButton = function () {
+      if(isFullscreen) {
+        $button.css({
+          'background-position': '0px 0px'
+        });
+      } else {
+        $button.css({
+          'background-position': '0px -20px'
+        });
+      }
+    };
+
+    plugin.toggleFullscreen = function (elem) {
+      if(isFullscreen) {
+        plugin.cancelfullscreen(elem);
+        isFullscreen = false;
+      } else {
+        plugin.fullscreen(elem);
+        isFullscreen = true;
+      }
+      plugin.toggleButton();
+    };
+
+    plugin.fullscreen = function (elem) {
+      if (!document.mozFullScreen && !document.webkitFullScreen) {
+        if (elem.mozRequestFullScreen) {
+          elem.mozRequestFullScreen();
+        } else {
+          elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+      } else {
+        if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else {
+          document.webkitCancelFullScreen();
+        }
+      }
+    };
+
+    plugin.cancelfullscreen = function (elem) {
+      if(document.cancelFullScreen) {
+        document.cancelFullScreen();
+      } else if(document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if(document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      }
+    };
     plugin.init();
   };
 }(jQuery));
