@@ -197,6 +197,20 @@
 
       base.initEvents();
       base.refresh();
+      base.initPlugins();
+    };
+
+    /**
+     * The function to initilize external plugin
+     */
+    base.initPlugins = function () {
+      $.each(AppCongif.plugins, function(i, plugin) {
+        if(typeof $[plugin] === 'function') {
+          $[plugin].call(base, base.$el, AppCongif);
+        } else {
+          throw new Error(plugin + ' not available.');
+        }
+      });
     };
 
     /**
@@ -655,7 +669,12 @@
      * Zero Padding for filenames
      * @type {Boolean}
      */
-    zeroPadding: false
+    zeroPadding: false,
+    /**
+     * @type {Array}
+     * List of plugins
+     */
+    plugins: []
 
   };
 

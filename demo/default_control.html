@@ -149,6 +149,7 @@ function init(){
     </section>
     <script src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src='../src/threesixty.js'></script>
+    <script type="text/javascript" src='../src/plugins/threesixty.fullscreen.js'></script>
     <script type="text/javascript" src="js/prism.js"></script>
     <script type="text/javascript">
     window.onload = init;
@@ -169,7 +170,8 @@ function init(){
         height: 447,
         width: 1000,
         navigation: true,
-        disableSpin: false
+        disableSpin: false,
+        plugins: ['ThreeSixtyFullscreen']
       });
 
     }
