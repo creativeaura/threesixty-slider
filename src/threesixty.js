@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.2
+ * 360 degree Image Slider v1.0.4
  * http://gaurav.jassal.me/lab
  *
  * Copyright 2013, gaurav@jassal.me

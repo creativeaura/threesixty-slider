@@ -1,3 +1,5 @@
+## 1.0.4 (July 18, 2013)
+- Fullscreen plugin added
 ## 1.0.3 (July 18, 2013)
 - New demos added and website also updated [http:360slider](http://360slider.com)
 - folder structure changed and removed all unwanted files.
