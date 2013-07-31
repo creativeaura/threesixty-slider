@@ -72,16 +72,8 @@
 /* html */
 #container:-webkit-full-screen {
   background: #ffffff;
-}
-#container:-moz-full-screen {
-  background: #ffffff;
-}
-#container:-ms-full-screen {
-  background: #ffffff;
-}
-#container:-o-full-screen {
-  background: #ffffff;
-}
-#container:full-screen {
-  background: #ffffff;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  padding-top: 200px;
 }
