@@ -15,7 +15,7 @@
 }
 
 #container{
-  margin-top: 120px;
+  margin-top: 160px;
   min-height: 450px
 }
 
@@ -26,4 +26,11 @@
 #social-buttons .social {
   margin: 0 auto;
   width:530px;
+}
+
+.github_follow{
+  position: absolute;
+  right: 10px;
+  top: 100px;
+  z-index: 100;
 }

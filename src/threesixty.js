@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.4
+ * 360 degree Image Slider v1.0.5
  * http://gaurav.jassal.me/lab
  *
  * Copyright 2013, gaurav@jassal.me
@@ -11,7 +11,7 @@
  */
 
 (function ($) {
-  "use strict";
+  'use strict';
    /**
    * @class ThreeSixty
    * **The ThreeSixty slider class**.
@@ -73,7 +73,7 @@
     base.el = el;
 
     // Add a reverse reference to the DOM object
-    base.$el.data("ThreeSixty", base);
+    base.$el.data('ThreeSixty', base);
 
     /**
      * @method init
@@ -122,19 +122,19 @@
      */
     base.initProgress = function() {
       base.$el.css({
-        width: AppCongif.width + "px",
-        height: AppCongif.height + "px",
-        "background-image": "none !important"
+        width: AppCongif.width + 'px',
+        height: AppCongif.height + 'px',
+        'background-image': 'none !important'
       }).css(AppCongif.styles);
 
       if(AppCongif.responsive) {
-         base.$el.css({ width: "100%" });
+         base.$el.css({ width: '100%' });
       }
       base.$el.find(AppCongif.progress).css({
         marginTop: ((AppCongif.height / 2) - 15) + 'px'
       });
 
-      base.$el.find(AppCongif.progress).fadeIn("slow");
+      base.$el.find(AppCongif.progress).fadeIn('slow');
 
       base.$el.find(AppCongif.imgList).hide();
     };
@@ -166,12 +166,12 @@
      */
     base.imageLoaded = function () {
       AppCongif.loadedImages += 1;
-      $(AppCongif.progress + " span").text(Math.floor(AppCongif.loadedImages / AppCongif.totalFrames * 100) + '%');
+      $(AppCongif.progress + ' span').text(Math.floor(AppCongif.loadedImages / AppCongif.totalFrames * 100) + '%');
       if (AppCongif.loadedImages >= AppCongif.totalFrames) {
         if(AppCongif.disableSpin) {
-          frames[0].removeClass("previous-image").addClass("current-image");
+          frames[0].removeClass('previous-image').addClass('current-image');
         }
-        $(AppCongif.progress).fadeOut("slow", function () {
+        $(AppCongif.progress).fadeOut('slow', function () {
           $(this).hide();
           base.showImages();
           base.showNavigation();
@@ -371,26 +371,23 @@
         } else if (event.type === 'touchend') {
           AppCongif.dragging = false;
         }
-        if (event.type === 'click' && !$.browser.msie) {
-          //base.$el.css("cursor", "url(img/images/hand_closed.png), auto");
-        }
       });
 
       $(document).bind('mouseup', function (event) {
         //event.preventDefault();
         AppCongif.dragging = false;
-        $(this).css("cursor", "none");
+        $(this).css('cursor', 'none');
       });
 
       $(document).bind('mousemove', function (event) {
         if (AppCongif.dragging) {
           event.preventDefault();
-          if(!$.browser.msie) {
-            //base.$el.css("cursor", "url(assets/images/hand_closed.png), auto");
+          if(!base.browser.isIE && AppCongif.showCursor) {
+            base.$el.css('cursor', 'url(assets/images/hand_closed.png), auto');
           }
         } else {
-          if(!$.browser.msie) {
-            //base.$el.css("cursor", "url(assets/images/hand_open.png), auto");
+          if(!base.browser.isIE && AppCongif.showCursor) {
+            base.$el.css('cursor', 'url(assets/images/hand_open.png), auto');
           }
         }
         base.trackPointer(event);
@@ -468,7 +465,7 @@
      */
 
     base.hidePreviousFrame = function () {
-      frames[base.getNormalizedCurrentFrame()].removeClass("current-image").addClass("previous-image");
+      frames[base.getNormalizedCurrentFrame()].removeClass('current-image').addClass('previous-image');
     };
 
     /**
@@ -477,7 +474,7 @@
      * Function shows the current frame in the animation loop.
      */
     base.showCurrentFrame = function () {
-      frames[base.getNormalizedCurrentFrame()].removeClass("previous-image").addClass("current-image");
+      frames[base.getNormalizedCurrentFrame()].removeClass('previous-image').addClass('current-image');
     };
 
     /**
@@ -497,7 +494,7 @@
      * Function to return with zero padding.
      */
     base.zeroPad = function (num) {
-        return ((+num < 10 && AppCongif.zeroPadding) ? "0" : "") + num;
+        return ((+num < 10 && AppCongif.zeroPadding) ? '0' : '') + num;
     };
 
     base.browser = {};
@@ -507,7 +504,8 @@
      * @return {boolean}
      */
     base.browser.isIE = function () {
-      return /MSIE (\d+\.\d+);/.test(navigator.userAgent);
+      var re = new RegExp('/MSIE (\\d+\\.\\d+);/');
+      return re.test(navigator.userAgent);
     };
 
     base.init();
@@ -674,7 +672,12 @@
      * @type {Array}
      * List of plugins
      */
-    plugins: []
+    plugins: [],
+    /**
+     * @type {Boolean}
+     * Show hand cursor on drag
+     */
+    showCursor: false
 
   };
 

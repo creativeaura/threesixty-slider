@@ -12,12 +12,12 @@
 
 
 (function($) {
-  "use strict";
+  'use strict';
   $.ThreeSixtyFullscreen = function (el, options) {
     var plugin = this,
       $el = el,
       opts = options,
-      $button = $('<a href="#">Fullscreen</a>'),
+      $button = $('<a href=\'#\'>Fullscreen</a>'),
       isFullscreen = false;
 
     // Attach event to the plugin

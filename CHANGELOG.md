@@ -1,3 +1,7 @@
+## 1.0.5 (July 18, 2013)
+- **_$.brower.msie_** issue fixed and plugin is now compatible with latest version for jQuery [Issue #26](https://github.com/creativeaura/threesixty-slider/issues/26)
+- Code linting added grunt-jshint
+
 ## 1.0.4 (July 18, 2013)
 - Fullscreen plugin added
 

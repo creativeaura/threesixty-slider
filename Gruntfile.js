@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+require('time-grunt')(grunt);
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -35,6 +35,28 @@ module.exports = function(grunt) {
       css: {
         files: 'styles/*.less',
         tasks: ['less']
+      },
+      scripts: {
+        files: 'src/**/*.js',
+        tasks: ['jshint'],
+        options: {
+          debounceDelay: 250
+        }
+      }
+    },
+    jshint: {
+      options: {
+        curly: true,
+        eqeqeq: true,
+        eqnull: false,
+        browser: true,
+        quotmark: 'single',
+        globals: {
+          jQuery: true
+        }
+      },
+      files: {
+        src: ['src/**/*.js']
       }
     }
   });
@@ -44,8 +66,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
-
+  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('build', ['uglify']);
+  grunt.registerTask('demo', ['connect:demo']);
 };
