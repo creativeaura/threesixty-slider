@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.5
+ * 360 degree Image Slider v1.0.6
  * http://gaurav.jassal.me/lab
  *
  * Copyright 2013, gaurav@jassal.me
@@ -504,8 +504,7 @@
      * @return {boolean}
      */
     base.browser.isIE = function () {
-      var re = new RegExp('/MSIE (\\d+\\.\\d+);/');
-      return re.test(navigator.userAgent);
+      return !$.support.leadingWhitespace;
     };
 
     base.init();
