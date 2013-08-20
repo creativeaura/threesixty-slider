@@ -13,12 +13,13 @@
 
 (function($) {
   'use strict';
-  $.ThreeSixtyFullscreen = function (el, options) {
+  $.ThreeSixtyFullscreen = function(el, options) {
     var plugin = this,
       $el = el,
       opts = options,
       $button = $('<a href=\'#\'>Fullscreen</a>'),
-      isFullscreen = false;
+      isFullscreen = false,
+      pfx = ['webkit', 'moz', 'ms', 'o', ''];
 
     // Attach event to the plugin
     $button.bind('click', function(event) {
@@ -45,6 +46,23 @@
       return this;
     };
 
+    plugin.RunPrefixMethod = function(obj, method) {
+      var p = 0,
+        m, t;
+      while (p < pfx.length && !obj[m]) {
+        m = method;
+        if (pfx[p] === '') {
+          m = m.substr(0, 1).toLowerCase() + m.substr(1);
+        }
+        m = pfx[p] + m;
+        t = typeof obj[m];
+        if (t !== 'undefined') {
+          pfx = [pfx[p]];
+          return (t === 'function' ? obj[m]() : obj[m]);
+        }
+        p++;
+      }
+    };
     /**
      * Initilize the fullscreen plugin
      * @param  {Object} opt override options
@@ -56,9 +74,9 @@
 
     plugin.onClickHandler = function(e) {
       var elem;
-      if(typeof $el.attr('id') !== 'undefined') {
+      if (typeof $el.attr('id') !== 'undefined') {
         elem = document.getElementById($el.attr('id'));
-      } else if(typeof $el.parent().attr('id') !== 'undefined'){
+      } else if (typeof $el.parent().attr('id') !== 'undefined') {
         elem = document.getElementById($el.parent().attr('id'));
       } else {
         return false;
@@ -67,8 +85,8 @@
       plugin.toggleFullscreen(elem);
     };
 
-    plugin.toggleButton = function () {
-      if(isFullscreen) {
+    plugin.toggleButton = function() {
+      if (isFullscreen) {
         $button.css({
           'background-position': '0px 0px'
         });
@@ -79,41 +97,14 @@
       }
     };
 
-    plugin.toggleFullscreen = function (elem) {
-      if(isFullscreen) {
-        plugin.cancelfullscreen(elem);
-        isFullscreen = false;
-      } else {
-        plugin.fullscreen(elem);
-        isFullscreen = true;
+    plugin.toggleFullscreen = function(elem) {
+      if (plugin.RunPrefixMethod(document, 'FullScreen') || plugin.RunPrefixMethod(document, 'IsFullScreen')) {
+        plugin.RunPrefixMethod(document, 'CancelFullScreen');
+      }
+      else {
+        plugin.RunPrefixMethod(elem, 'RequestFullScreen');
       }
       plugin.toggleButton();
-    };
-
-    plugin.fullscreen = function (elem) {
-      if (!document.mozFullScreen && !document.webkitFullScreen) {
-        if (elem.mozRequestFullScreen) {
-          elem.mozRequestFullScreen();
-        } else {
-          elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-        }
-      } else {
-        if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else {
-          document.webkitCancelFullScreen();
-        }
-      }
-    };
-
-    plugin.cancelfullscreen = function (elem) {
-      if(document.cancelFullScreen) {
-        document.cancelFullScreen();
-      } else if(document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if(document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
-      }
     };
     plugin.init();
   };
