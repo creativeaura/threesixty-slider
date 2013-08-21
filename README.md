@@ -1,7 +1,7 @@
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
 
-Three Sixty Image slider plugin
+Three Sixty Image slider plugin v1.0.6
 =================
 
 This is a jQuery plugin to create 360 degree product image slider. The plugin is full customizable with number of options provided. The plugin have the power to display images in any angle 360 degrees. This feature can be used successfully in many use cases e.g. on an e-commerce site to help customers look products in detail, from any angle they desire.
@@ -138,11 +138,11 @@ Here are the list of config value you can pass in while you initilize your 360 s
 
 Demo
 ---------------------
-- [Example 1 Default Settings](http://creativeaura.github.com/threesixty-slider)
-- [Example 2 Custom controls](http://creativeaura.github.com/threesixty-slider/example1.html)
-- [Multiple Sliders in one page](http://creativeaura.github.com/threesixty-slider/example2.html)
-- [No Drag with Scrollbar](http://creativeaura.github.com/threesixty-slider/example3.html)
-- [Live Editor](http://creativeaura.github.com/threesixty-slider/editor.html)
+- [Example 1 Default Settings](http://360slider.com/default_control.html)
+- [Example 2 Custom controls](http://360slider.com/custom_controls.html)
+- [Responsive](http://360slider.com/responsive.html)
+- [With Plugins](http://360slider.com/plugins.html)
+- [Fullscreen](http://360slider.com/full_page_scrolling.html)
 
 Browsers Supported
 ---------------------
