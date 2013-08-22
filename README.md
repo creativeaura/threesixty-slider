@@ -18,6 +18,17 @@ This is a jQuery plugin to create 360 degree product image slider. The plugin is
 - No flash
 - Plugin integration
 
+Installation
+---------------------
+
+Git
+    
+    git clone https://github.com/creativeaura/threesixty-slider.git
+
+Or install using bower 
+
+    bower install threesixty-slider
+
 Example 1
 ---------------------
 ### Javascript ######
