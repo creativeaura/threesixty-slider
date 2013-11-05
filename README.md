@@ -173,3 +173,7 @@ LICENSE
 Copyright 2013 Gaurav Jassal
 
 Released under the MIT and GPL Licenses.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
