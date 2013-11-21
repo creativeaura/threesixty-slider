@@ -539,7 +539,10 @@
           return str;
         }
 
-        var numChars = Math.floor(Math.log(AppCongif.totalFrames) / Math.LN10);
+        var approximateLog = Math.log(AppCongif.totalFrames) / Math.LN10;
+        var roundTo = 1e6;
+        var roundedLog = Math.round(approximateLog * roundTo) / roundTo;
+        var numChars = Math.floor(roundedLog);
         return pad(num, numChars);
     };
 
