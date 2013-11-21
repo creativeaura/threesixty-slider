@@ -145,9 +145,10 @@
      * The function asynchronously loads images and inject into the slider.
      */
     base.loadImages = function() {
-      var li, imageName, image, host;
+      var li, imageName, image, host, baseIndex;
       li = document.createElement('li');
-      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + 1)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
+      baseIndex = AppCongif.zeroBased ? 0 : 1;
+      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
@@ -730,6 +731,11 @@
      * @type {Boolean}
      */
     zeroPadding: false,
+    /**
+     * Zero based for image filenames starting at 0
+     * @type {Boolean}
+     */
+     zeroBased: false,
     /**
      * @type {Array}
      * List of plugins
