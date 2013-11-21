@@ -2,6 +2,10 @@
   "name": "threesixty-slider",
   "description": "360 degree Image Slider",
   "version": "1.0.6-vml",
+  "repository" : {
+      "type" : "git",
+      "url" : "http://github.com/vml-webdev/threesixty-slider.git"
+  },
   "ignore": [
     ".jshintrc",
     ".editorconfig",
