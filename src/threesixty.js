@@ -348,9 +348,44 @@
      *
      */
     base.gotoAndPlay = function (n) {
-      AppCongif.endFrame = n;
-      base.refresh();
+      // Since we could be looped around grab the multiplier
+      var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
+      if(multiplier === 0) {
+        multiplier = 1;
+      }
+
+      // Figure out the quickest path to the requested frame
+      var realEndFrame = (multiplier > 1) ?
+        AppCongif.endFrame - ((multiplier - 1) * AppCongif.totalFrames) :
+        AppCongif.endFrame;
+
+      var currentFromEnd = AppCongif.totalFrames - realEndFrame;
+
+      // Jump past end if it's faster
+      var newEndFrame = 0;
+      if(n - realEndFrame > 0) {
+        // Faster to move the difference ahead?
+        if(n - realEndFrame < realEndFrame + (AppCongif.totalFrames - n)) {
+          newEndFrame = AppCongif.endFrame + (n - realEndFrame);
+        } else {
+          newEndFrame = AppCongif.endFrame - (realEndFrame + (AppCongif.totalFrames - n));
+        }
+      } else {
+          // Faster to move the distance back?
+          if(realEndFrame - n < currentFromEnd + n) {
+            newEndFrame = AppCongif.endFrame - (realEndFrame - n);
+          } else {
+            newEndFrame = AppCongif.endFrame + (currentFromEnd + n);
+          }
+      }
+
+      // Now set the end frame
+      if(realEndFrame !== n) {
+        AppCongif.endFrame = newEndFrame;
+        base.refresh();
+      }
     };
+
 
     /**
      * @method initEvents
@@ -494,7 +529,16 @@
      * Function to return with zero padding.
      */
     base.zeroPad = function (num) {
-        return ((+num < 10 && AppCongif.zeroPadding) ? '0' : '') + num;
+        function pad(number, length) {
+          var str = number.toString();
+            while (str.length < length) {
+                str = '0' + str;
+            }
+            return str;
+        }
+
+        var numChars = Math.floor(Math.log(AppCongif.totalFrames) / Math.LN10);
+        return pad(num, numChars);
     };
 
     base.browser = {};
