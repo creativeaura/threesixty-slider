@@ -455,6 +455,11 @@
         if (AppCongif.monitorStartTime < new Date().getTime() - AppCongif.monitorInt) {
           AppCongif.pointerDistance = AppCongif.pointerEndPosX - AppCongif.pointerStartPosX;
           AppCongif.endFrame = AppCongif.currentFrame + Math.ceil((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+
+          if( AppCongif.disableWrap ) {
+            AppCongif.endFrame = Math.min(AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0), AppCongif.endFrame);
+            AppCongif.endFrame = Math.max((AppCongif.zeroBased ? 0 : 1), AppCongif.endFrame);
+          }
           base.refresh();
           AppCongif.monitorStartTime = new Date().getTime();
           AppCongif.pointerStartPosX = base.getPointerEvent(event).pageX;
@@ -528,10 +533,10 @@
           c += (AppCongif.totalFrames - 1);
         }
       } else {
-        c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - 1);
-        e = Math.min(AppCongif.endFrame, AppCongif.totalFrames - 1);
-        c = Math.max(c, 0);
-        e = Math.max(e, 0);
+        c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
+        e = Math.min(AppCongif.endFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
+        c = Math.max(c, (AppCongif.zeroBased ? 0 : 1));
+        e = Math.max(e, (AppCongif.zeroBased ? 0 : 1));
         AppCongif.currentFrame = c;
         AppCongif.endFrame = e;
       }
