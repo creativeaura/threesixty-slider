@@ -531,10 +531,12 @@
     base.zeroPad = function (num) {
         function pad(number, length) {
           var str = number.toString();
+          if(AppCongif.zeroPadding) {
             while (str.length < length) {
                 str = '0' + str;
             }
-            return str;
+          }
+          return str;
         }
 
         var numChars = Math.floor(Math.log(AppCongif.totalFrames) / Math.LN10);
