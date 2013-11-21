@@ -520,7 +520,7 @@
      */
 
     base.getNormalizedCurrentFrame = function () {
-      var c;
+      var c, e;
 
       if ( !AppCongif.disableWrap ) {
         c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
@@ -529,8 +529,11 @@
         }
       } else {
         c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - 1);
+        e = Math.min(AppCongif.endFrame, AppCongif.totalFrames - 1);
         c = Math.max(c, 0);
+        e = Math.max(e, 0);
         AppCongif.currentFrame = c;
+        AppCongif.endFrame = e;
       }
 
       return c;
