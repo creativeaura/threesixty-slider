@@ -1,7 +1,7 @@
 {
   "name": "threesixty-slider",
   "description": "360 degree Image Slider",
-  "version": "1.0.6",
+  "version": "1.0.6-vml",
   "ignore": [
     ".jshintrc",
     ".editorconfig",
