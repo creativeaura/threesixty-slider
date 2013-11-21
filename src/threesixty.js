@@ -519,10 +519,19 @@
      */
 
     base.getNormalizedCurrentFrame = function () {
-      var c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
-      if (c < 0) {
-        c += (AppCongif.totalFrames - 1);
+      var c;
+
+      if ( !AppCongif.disableWrap ) {
+        c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
+        if (c < 0) {
+          c += (AppCongif.totalFrames - 1);
+        }
+      } else {
+        c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - 1);
+        c = Math.max(c, 0);
+        AppCongif.currentFrame = c;
       }
+
       return c;
     };
     /**
@@ -706,6 +715,11 @@
      * @type {Boolean}
      */
     disableSpin: false,
+    /**
+     * Property to disable infinite wrap
+     * @type {Boolean}
+     */
+    disableWrap: false,
     /**
      * Responsive width
      * @type {Boolean}
