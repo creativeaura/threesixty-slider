@@ -349,6 +349,11 @@
      *
      */
     base.gotoAndPlay = function (n) {
+      if( !AppCongif.disableWrap ) {
+        AppCongif.endFrame = n;
+        base.refresh();
+        return;
+      }
       // Since we could be looped around grab the multiplier
       var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
       if(multiplier === 0) {
