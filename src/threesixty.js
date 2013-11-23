@@ -349,7 +349,7 @@
      *
      */
     base.gotoAndPlay = function (n) {
-      if( !AppCongif.disableWrap ) {
+      if( AppCongif.disableWrap ) {
         AppCongif.endFrame = n;
         base.refresh();
         return;
