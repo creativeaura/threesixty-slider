@@ -194,6 +194,7 @@
     base.showImages = function () {
       base.$el.find('.txtC').fadeIn();
       base.$el.find(AppCongif.imgList).fadeIn();
+      base.ready = true;
       AppCongif.ready = true;
 
       base.initEvents();
@@ -352,43 +353,43 @@
       if( AppCongif.disableWrap ) {
         AppCongif.endFrame = n;
         base.refresh();
-        return;
-      }
-      // Since we could be looped around grab the multiplier
-      var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
-      if(multiplier === 0) {
-        multiplier = 1;
-      }
-
-      // Figure out the quickest path to the requested frame
-      var realEndFrame = (multiplier > 1) ?
-        AppCongif.endFrame - ((multiplier - 1) * AppCongif.totalFrames) :
-        AppCongif.endFrame;
-
-      var currentFromEnd = AppCongif.totalFrames - realEndFrame;
-
-      // Jump past end if it's faster
-      var newEndFrame = 0;
-      if(n - realEndFrame > 0) {
-        // Faster to move the difference ahead?
-        if(n - realEndFrame < realEndFrame + (AppCongif.totalFrames - n)) {
-          newEndFrame = AppCongif.endFrame + (n - realEndFrame);
-        } else {
-          newEndFrame = AppCongif.endFrame - (realEndFrame + (AppCongif.totalFrames - n));
-        }
       } else {
-          // Faster to move the distance back?
-          if(realEndFrame - n < currentFromEnd + n) {
-            newEndFrame = AppCongif.endFrame - (realEndFrame - n);
-          } else {
-            newEndFrame = AppCongif.endFrame + (currentFromEnd + n);
-          }
-      }
+        // Since we could be looped around grab the multiplier
+        var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
+        if(multiplier === 0) {
+          multiplier = 1;
+        }
 
-      // Now set the end frame
-      if(realEndFrame !== n) {
-        AppCongif.endFrame = newEndFrame;
-        base.refresh();
+        // Figure out the quickest path to the requested frame
+        var realEndFrame = (multiplier > 1) ?
+          AppCongif.endFrame - ((multiplier - 1) * AppCongif.totalFrames) :
+          AppCongif.endFrame;
+
+        var currentFromEnd = AppCongif.totalFrames - realEndFrame;
+
+        // Jump past end if it's faster
+        var newEndFrame = 0;
+        if(n - realEndFrame > 0) {
+          // Faster to move the difference ahead?
+          if(n - realEndFrame < realEndFrame + (AppCongif.totalFrames - n)) {
+            newEndFrame = AppCongif.endFrame + (n - realEndFrame);
+          } else {
+            newEndFrame = AppCongif.endFrame - (realEndFrame + (AppCongif.totalFrames - n));
+          }
+        } else {
+            // Faster to move the distance back?
+            if(realEndFrame - n < currentFromEnd + n) {
+              newEndFrame = AppCongif.endFrame - (realEndFrame - n);
+            } else {
+              newEndFrame = AppCongif.endFrame + (currentFromEnd + n);
+            }
+        }
+
+        // Now set the end frame
+        if(realEndFrame !== n) {
+          AppCongif.endFrame = newEndFrame;
+          base.refresh();
+        }
       }
     };
 
