@@ -145,9 +145,10 @@
      * The function asynchronously loads images and inject into the slider.
      */
     base.loadImages = function() {
-      var li, imageName, image, host;
+      var li, imageName, image, host, baseIndex;
       li = document.createElement('li');
-      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + 1)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
+      baseIndex = AppCongif.zeroBased ? 0 : 1;
+      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
@@ -193,6 +194,7 @@
     base.showImages = function () {
       base.$el.find('.txtC').fadeIn();
       base.$el.find(AppCongif.imgList).fadeIn();
+      base.ready = true;
       AppCongif.ready = true;
 
       base.initEvents();
@@ -348,9 +350,49 @@
      *
      */
     base.gotoAndPlay = function (n) {
-      AppCongif.endFrame = n;
-      base.refresh();
+      if( AppCongif.disableWrap ) {
+        AppCongif.endFrame = n;
+        base.refresh();
+      } else {
+        // Since we could be looped around grab the multiplier
+        var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
+        if(multiplier === 0) {
+          multiplier = 1;
+        }
+
+        // Figure out the quickest path to the requested frame
+        var realEndFrame = (multiplier > 1) ?
+          AppCongif.endFrame - ((multiplier - 1) * AppCongif.totalFrames) :
+          AppCongif.endFrame;
+
+        var currentFromEnd = AppCongif.totalFrames - realEndFrame;
+
+        // Jump past end if it's faster
+        var newEndFrame = 0;
+        if(n - realEndFrame > 0) {
+          // Faster to move the difference ahead?
+          if(n - realEndFrame < realEndFrame + (AppCongif.totalFrames - n)) {
+            newEndFrame = AppCongif.endFrame + (n - realEndFrame);
+          } else {
+            newEndFrame = AppCongif.endFrame - (realEndFrame + (AppCongif.totalFrames - n));
+          }
+        } else {
+            // Faster to move the distance back?
+            if(realEndFrame - n < currentFromEnd + n) {
+              newEndFrame = AppCongif.endFrame - (realEndFrame - n);
+            } else {
+              newEndFrame = AppCongif.endFrame + (currentFromEnd + n);
+            }
+        }
+
+        // Now set the end frame
+        if(realEndFrame !== n) {
+          AppCongif.endFrame = newEndFrame;
+          base.refresh();
+        }
+      }
     };
+
 
     /**
      * @method initEvents
@@ -419,6 +461,11 @@
         if (AppCongif.monitorStartTime < new Date().getTime() - AppCongif.monitorInt) {
           AppCongif.pointerDistance = AppCongif.pointerEndPosX - AppCongif.pointerStartPosX;
           AppCongif.endFrame = AppCongif.currentFrame + Math.ceil((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+
+          if( AppCongif.disableWrap ) {
+            AppCongif.endFrame = Math.min(AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0), AppCongif.endFrame);
+            AppCongif.endFrame = Math.max((AppCongif.zeroBased ? 0 : 1), AppCongif.endFrame);
+          }
           base.refresh();
           AppCongif.monitorStartTime = new Date().getTime();
           AppCongif.pointerStartPosX = base.getPointerEvent(event).pageX;
@@ -484,17 +531,43 @@
      */
 
     base.getNormalizedCurrentFrame = function () {
-      var c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
-      if (c < 0) {
-        c += (AppCongif.totalFrames - 1);
+      var c, e;
+
+      if ( !AppCongif.disableWrap ) {
+        c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
+        if (c < 0) {
+          c += (AppCongif.totalFrames - 1);
+        }
+      } else {
+        c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
+        e = Math.min(AppCongif.endFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
+        c = Math.max(c, (AppCongif.zeroBased ? 0 : 1));
+        e = Math.max(e, (AppCongif.zeroBased ? 0 : 1));
+        AppCongif.currentFrame = c;
+        AppCongif.endFrame = e;
       }
+
       return c;
     };
     /**
      * Function to return with zero padding.
      */
     base.zeroPad = function (num) {
-        return ((+num < 10 && AppCongif.zeroPadding) ? '0' : '') + num;
+        function pad(number, length) {
+          var str = number.toString();
+          if(AppCongif.zeroPadding) {
+            while (str.length < length) {
+                str = '0' + str;
+            }
+          }
+          return str;
+        }
+
+        var approximateLog = Math.log(AppCongif.totalFrames) / Math.LN10;
+        var roundTo = 1e3;
+        var roundedLog = Math.round(approximateLog * roundTo) / roundTo;
+        var numChars = Math.floor(roundedLog) + 1;
+        return pad(num, numChars);
     };
 
     base.browser = {};
@@ -658,6 +731,11 @@
      */
     disableSpin: false,
     /**
+     * Property to disable infinite wrap
+     * @type {Boolean}
+     */
+    disableWrap: false,
+    /**
      * Responsive width
      * @type {Boolean}
      */
@@ -667,6 +745,11 @@
      * @type {Boolean}
      */
     zeroPadding: false,
+    /**
+     * Zero based for image filenames starting at 0
+     * @type {Boolean}
+     */
+     zeroBased: false,
     /**
      * @type {Array}
      * List of plugins

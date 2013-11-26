@@ -5,7 +5,7 @@ require('time-grunt')(grunt);
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> verison <%= pkg.version %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> verison <%= pkg.version %> */\n'+'/* <%= pkg.repository.url %> */\n'
       },
       build: {
         src: 'src/threesixty.js',

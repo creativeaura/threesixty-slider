@@ -1,3 +1,12 @@
+## 1.0.6-vml (November 20, 2013)
+
+VML
+Shane Daniel & Josh Robison
+
+- allow for zero padding more than one digit
+- smoother gotoAndPlay solution for infinite cycle
+- **_disableWrap_** option was added for non-true-360 framesets
+
 ## 1.0.6 (Aug 17, 2013)
 - minor ie issue fixed
 
