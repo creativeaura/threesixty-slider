@@ -2,7 +2,7 @@
 	"name": "threesixty-slider",
 		"description": "360 degree Image Slider",
 		"main": "dist/threesixty.min.js",
-		"version": "1.0.6",
+		"version": "1.0.7",
 		"ignore": [
 			".jshintrc",
 		".editorconfig",

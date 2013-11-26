@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.6
+ * 360 degree Image Slider v1.0.7
  * http://gaurav.jassal.me/lab
  *
  * Copyright 2013, gaurav@jassal.me
@@ -61,7 +61,7 @@
   $.ThreeSixty = function (el, options) {
     // To avoid scope issues, use 'base' instead of 'this'
     // to reference this class from internal events and functions.
-    var base = this, AppCongif, frames = [], VERSION = '1.0.2';
+    var base = this, AppCongif, frames = [], VERSION = '1.0.7';
 
     // Access to jQuery and DOM versions of element
     /**
