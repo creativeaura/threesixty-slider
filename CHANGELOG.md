@@ -1,3 +1,7 @@
+## 1.0.7 (November 26, 2013)
+
+- Bug fixes and Bug fixes and minor enhancements
+
 ## 1.0.6-vml (November 20, 2013)
 
 VML
