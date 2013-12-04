@@ -58,15 +58,28 @@ require('time-grunt')(grunt);
       files: {
         src: ['src/**/*.js']
       }
-    }
+    },
+    jasmine: {
+      pivotal: {
+        src: ['demo/js/jquery-1.8.3.min.js', 'src/**/*.js'],
+        options: {
+          specs: 'tests/spec/*Spec.js',
+          helpers: 'tests/spec/*Helper.js'
+        }
+      }
+    },
+  	bump: {
+	  options: {
+		  files: ['package.json', 'bower.json'],
+		  commit: false,
+		  createTag: false,
+		  push: false
+	  }
+  	}
   });
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  require('load-grunt-tasks')(grunt);
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'uglify']);
