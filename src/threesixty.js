@@ -499,6 +499,7 @@
         base.hidePreviousFrame();
         AppCongif.currentFrame += frameEasing;
         base.showCurrentFrame();
+        base.$el.trigger('frameIndexChanged', [base.getNormalizedCurrentFrame(), AppCongif.totalFrames]);
       } else {
         window.clearInterval(AppCongif.ticker);
         AppCongif.ticker = 0;
