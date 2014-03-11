@@ -150,7 +150,7 @@
       baseIndex = AppCongif.zeroBased ? 0 : 1;
       imageName = !AppCongif.imgArray ?
 	    AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
-	    AppCongif.domain + AppCongif.imagePath + AppCongif.imgArray[AppCongif.loadedImages];
+	    AppCongif.imgArray[AppCongif.loadedImages];
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);

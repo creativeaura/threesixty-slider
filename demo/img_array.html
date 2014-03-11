@@ -163,7 +163,7 @@
     var product;
     function init(){
 
-        imgArray = [
+        var images = [
             '1.png','2.png','3.png','4.png','5.png',
             '6.png','7.png','8.png','9.png','10.png',
             '11.png','12.png','13.png','14.png','15.png',
@@ -175,7 +175,12 @@
             '41.png','42.png','43.png','44.png','45.png',
             '46.png','47.png','48.png','49.png','50.png',
             '51.png','52.png'
-        ]
+        ];
+
+        var imgArray = [];
+        for (var i = 0; i < images.length; i++) {
+            imgArray.push("https://raw.github.com/creativeaura/threesixty-slider/master/demo/img/car/" + images[i]);
+        }
 
         product1 = $('.product1').ThreeSixty({
             totalFrames: imgArray.length,
@@ -183,15 +188,12 @@
             currentFrame: 1,
             imgList: '.threesixty_images',
             progress: '.spinner',
-            imagePath:'/creativeaura/threesixty-slider/master/demo/img/car/',
             filePrefix: '',
-            ext: '.png',
             height: 447,
             width: 1000,
             navigation: true,
             disableSpin: false,
-            imgArray: imgArray,
-            domain: 'https://raw.github.com'
+            imgArray: imgArray
         });
 
     }
