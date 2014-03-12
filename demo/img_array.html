@@ -24,7 +24,7 @@
             <a class="brand" href="#">Threesixty Slider</a>
             <div class="navbar-content">
                 <ul class="nav pull-right">
-                    <li class="active">
+                    <li>
                         <a href="default_control.html">Default Settings</a>
                     </li>
                     <li>
@@ -39,7 +39,7 @@
                     <li>
                         <a href="full_page_scrolling.html">Full Page Scrolling</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="img_array.html">Image Array</a>
                     </li>
                     <li></li>
@@ -74,21 +74,40 @@
 
 <pre><code class="language-javascript">window.onload = init;
 
-    var car;
+    var product1;
     function init(){
 
-    car = $('.car').ThreeSixty({
-    totalFrames: 52, // Total no. of image you have for 360 slider
-    endFrame: 52, // end frame for the auto spin animation
-    currentFrame: 1, // This the start frame for auto spin
-    imgList: '.threesixty_images', // selector for image list
-    progress: '.spinner', // selector to show the loading progress
-    imagePath:'assets/car/', // path of the image assets
-    filePrefix: '', // file prefix if any
-    ext: '.png', // extention for the assets
-    height: 1000,
-    width: 447,
-    navigation: true
+    var images = [
+    '1.png','2.png','3.png','4.png','5.png',
+    '6.png','7.png','8.png','9.png','10.png',
+    '11.png','12.png','13.png','14.png','15.png',
+    '16.png','17.png','18.png','19.png','20.png',
+    '21.png','22.png','23.png','24.png','25.png',
+    '26.png','27.png','28.png','29.png','30.png',
+    '31.png','32.png','33.png','34.png','35.png',
+    '36.png','37.png','38.png','39.png','40.png',
+    '41.png','42.png','43.png','44.png','45.png',
+    '46.png','47.png','48.png','49.png','50.png',
+    '51.png','52.png'
+    ];
+
+    var imgArray = [];
+    for (var i = 0; i < images.length; i++) {
+    imgArray.push("https://raw.github.com/creativeaura/threesixty-slider/master/demo/img/car/" + images[i]);
+    }
+
+    product1 = $('.product1').ThreeSixty({
+    totalFrames: imgArray.length,
+    endFrame: 30,
+    currentFrame: 1,
+    imgList: '.threesixty_images',
+    progress: '.spinner',
+    filePrefix: '',
+    height: 447,
+    width: 1000,
+    navigation: true,
+    disableSpin: false,
+    imgArray: imgArray
     });
 
     }
@@ -160,7 +179,7 @@
 <script type="text/javascript">
     window.onload = init;
 
-    var product;
+    var product1;
     function init(){
 
         var images = [
