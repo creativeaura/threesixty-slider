@@ -148,7 +148,9 @@
       var li, imageName, image, host, baseIndex;
       li = document.createElement('li');
       baseIndex = AppCongif.zeroBased ? 0 : 1;
-      imageName = AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '');
+      imageName = !AppCongif.imgArray ?
+	    AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
+	    AppCongif.imgArray[AppCongif.loadedImages];
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
