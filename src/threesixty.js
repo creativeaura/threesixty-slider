@@ -462,7 +462,11 @@
         AppCongif.pointerEndPosX = base.getPointerEvent(event).pageX;
         if (AppCongif.monitorStartTime < new Date().getTime() - AppCongif.monitorInt) {
           AppCongif.pointerDistance = AppCongif.pointerEndPosX - AppCongif.pointerStartPosX;
+          if(AppCongif.pointerDistance > 0){
           AppCongif.endFrame = AppCongif.currentFrame + Math.ceil((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+          }else{
+          AppCongif.endFrame = AppCongif.currentFrame + Math.floor((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+          }
 
           if( AppCongif.disableWrap ) {
             AppCongif.endFrame = Math.min(AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0), AppCongif.endFrame);
