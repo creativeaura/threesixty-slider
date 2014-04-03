@@ -2,7 +2,7 @@
 /*jslint browser:true, devel:true */
 
 /*!
- * 360 degree Image Slider v1.0.7
+ * 360 degree Image Slider v1.0.8
  * http://gaurav.jassal.me/lab
  *
  * Copyright 2013, gaurav@jassal.me
@@ -199,7 +199,9 @@
       base.ready = true;
       AppCongif.ready = true;
 
-      base.initEvents();
+      if (AppCongif.drag) {
+        base.initEvents();
+      }
       base.refresh();
       base.initPlugins();
     };
@@ -766,7 +768,12 @@
      * @type {Boolean}
      * Show hand cursor on drag
      */
-    showCursor: false
+    showCursor: false,
+    /**
+     * @cfg {Boolean} drag
+     * Set it to false if you want to disable mousedrag or touch events
+     */
+    drag : true
 
   };
 

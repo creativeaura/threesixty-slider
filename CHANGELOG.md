@@ -1,3 +1,7 @@
+## 1.0.8 (April 3rd, 2014)
+
+- Missing drag flag added to disable drag and swipe events [Issue #40](https://github.com/creativeaura/threesixty-slider/issues/40)
+
 ## 1.0.7 (November 26, 2013)
 
 - Bug fixes and Bug fixes and minor enhancements

@@ -136,7 +136,7 @@ Here are the list of config value you can pass in while you initilize your 360 s
     <td>autoplayDirection</td><td>1</td><td>Number</td><td>Control the direction of the spin depending on your assets. You can use 1 or -1</td>
   </tr>
 <tr>
-    <td>dragging</td><td>true</td><td>Boolean</td><td>Set false if you want to disable mouse and touch events on the slider.</td>
+    <td>drag</td><td>true</td><td>Boolean</td><td>Set false if you want to disable mouse and touch events on the slider.</td>
   </tr>
   <tr>
     <td>disableSpin</td><td>false</td><td>Boolean</td><td>Will disable the initial spin on load</td>
