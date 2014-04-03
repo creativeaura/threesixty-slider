@@ -1,7 +1,7 @@
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
 
-Three Sixty Image slider plugin v1.0.7
+Three Sixty Image slider plugin v1.0.8
 =================
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
