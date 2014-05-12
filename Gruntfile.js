@@ -87,8 +87,7 @@ require('time-grunt')(grunt);
       },
       dist: {
         files: [
-          {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'deploy/js/', filter: 'isFile'},
-          {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'demo/js/', filter: 'isFile'}
+          {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'deploy/js/', filter: 'isFile'}
         ]
       }
     }
