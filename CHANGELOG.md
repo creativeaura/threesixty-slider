@@ -1,3 +1,8 @@
+## 1.0.9 (May 12th, 2014)
+
+- BUG - base.browser.isIE returns TRUE on non IE browser [Issue #43](https://github.com/creativeaura/threesixty-slider/issues/43)
+- Feature - Trigger "ready" event  [Issue #42](https://github.com/creativeaura/threesixty-slider/issues/42)
+
 ## 1.0.8 (April 3rd, 2014)
 
 - Missing drag flag added to disable drag and swipe events [Issue #40](https://github.com/creativeaura/threesixty-slider/issues/40)

@@ -75,7 +75,23 @@ require('time-grunt')(grunt);
 		  createTag: false,
 		  push: false
 	  }
-  	}
+  	},
+    usemin: {
+      html: 'deploy/*.html'
+    },
+    copy: {
+      deploy: {
+        files: [
+          {expand: true, cwd: 'demo/', src: ['**'], dest: 'deploy/'}
+        ]
+      },
+      dist: {
+        files: [
+          {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'deploy/js/', filter: 'isFile'},
+          {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'demo/js/', filter: 'isFile'}
+        ]
+      }
+    }
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -84,5 +100,6 @@ require('time-grunt')(grunt);
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'uglify']);
   grunt.registerTask('build', ['uglify']);
+  grunt.registerTask('deploy', ['copy:deploy', 'usemin:html', 'copy:dist']);
   grunt.registerTask('demo', ['connect:demo']);
 };

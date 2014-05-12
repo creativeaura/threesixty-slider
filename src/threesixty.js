@@ -149,8 +149,8 @@
       li = document.createElement('li');
       baseIndex = AppCongif.zeroBased ? 0 : 1;
       imageName = !AppCongif.imgArray ?
-	    AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
-	    AppCongif.imgArray[AppCongif.loadedImages];
+      AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
+      AppCongif.imgArray[AppCongif.loadedImages];
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
@@ -204,6 +204,8 @@
       }
       base.refresh();
       base.initPlugins();
+
+      AppCongif.onReady();
     };
 
     /**
@@ -584,11 +586,22 @@
     /**
      * Function to detect if the brower is IE
      * @return {boolean}
+     *
+     * http://msdn.microsoft.com/en-gb/library/ms537509(v=vs.85).aspx
      */
     base.browser.isIE = function () {
-      return !$.support.leadingWhitespace;
-    };
+      var rv = -1;
+      if (navigator.appName === 'Microsoft Internet Explorer')
+      {
+        var ua = navigator.userAgent;
+        var re  = new RegExp('MSIE ([0-9]{1,}[\\.0-9]{0,})');
+        if (re.exec(ua) !== null){
+          rv = parseFloat( RegExp.$1 );
+        }
+      }
 
+      return rv !== -1;
+    };
     base.init();
   };
 
@@ -773,7 +786,13 @@
      * @cfg {Boolean} drag
      * Set it to false if you want to disable mousedrag or touch events
      */
-    drag : true
+    drag : true,
+    /**
+     * @cfg {Function} onReady
+     * Callback triggers once all images are loaded and ready to render on the screen
+     */
+    onReady : function() {}
+
 
   };
 

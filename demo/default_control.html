@@ -155,7 +155,9 @@ function init(){
       </div>
     </section>
     <script src="js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src='../dist/threesixty.min.js'></script>
+    <!-- build:js js/threesixty.min.js -->
+    <script type="text/javascript" src='../src/threesixty.js'></script>
+    <!-- endbuild -->
     <script type="text/javascript" src="js/prism.js"></script>
     <script type="text/javascript">
     window.onload = init;
@@ -176,7 +178,10 @@ function init(){
         height: 447,
         width: 1000,
         navigation: true,
-        disableSpin: false
+        disableSpin: false,
+        onReady: function () {
+          //
+        }
       });
 
     }

@@ -1,7 +1,7 @@
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
 
-Three Sixty Image slider plugin v1.0.8
+Three Sixty Image slider plugin v1.0.9
 =================
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
@@ -147,6 +147,9 @@ Here are the list of config value you can pass in while you initilize your 360 s
   <tr>
     <td>responsive</td><td>false</td><td>Boolean</td><td>Enable responsive width for 360</td>
   </tr>
+  <tr>
+      <td>onReady</td><td>function() {}</td><td>Function</td><td>Callback triggers once all images are loaded and ready to render on the screen</td>
+    </tr>
 </table>
 
 Demo
