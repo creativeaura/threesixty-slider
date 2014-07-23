@@ -33,12 +33,12 @@ require('time-grunt')(grunt);
     },
     watch: {
       css: {
-        files: 'styles/*.less',
+        files: 'src/styles/*.less',
         tasks: ['less']
       },
       scripts: {
-        files: 'src/**/*.js',
-        tasks: ['jshint'],
+        files: ['src/**/*.js', 'tests/**/*.js'],
+        tasks: ['jshint', 'qunit'],
         options: {
           debounceDelay: 250
         }
@@ -57,15 +57,6 @@ require('time-grunt')(grunt);
       },
       files: {
         src: ['src/**/*.js']
-      }
-    },
-    jasmine: {
-      pivotal: {
-        src: ['demo/js/jquery-1.8.3.min.js', 'src/**/*.js'],
-        options: {
-          specs: 'tests/spec/*Spec.js',
-          helpers: 'tests/spec/*Helper.js'
-        }
       }
     },
   	bump: {
@@ -90,6 +81,9 @@ require('time-grunt')(grunt);
           {expand: true, flatten: true, src: ['dist/threesixty.min.js'], dest: 'deploy/js/', filter: 'isFile'}
         ]
       }
+    },
+    qunit: {
+      all: ['tests/**/*.html']
     }
   });
 
