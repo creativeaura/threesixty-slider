@@ -34,3 +34,31 @@ test("Threesixty Default values", function() {
 	equal($.ThreeSixty.defaultOptions.drag, true, "Drag should be true");  
 });
 
+
+test("Should default config extend custom config values and update", function() {
+  var three60 = $('.car').ThreeSixty({domain: 'http://', totalFrames: 80});
+  var _config = three60.getConfig();
+  notEqual(typeof(three60.getConfig), 'undefined', 'getConfig function not defined');
+  
+  equal(_config.domain, 'http://','custom config didnt get updated');
+  equal(_config.totalFrames, 80,'custom config didnt get updated');
+});
+
+test("should remove the background from container div", function() {
+  var three60 = $('.car').ThreeSixty({domain: 'http://', totalFrames: 80});
+  equal(three60.$el.css('background-image'), 'none', 'background not removed');
+});
+
+test("should set cutom styles on the div", function() {
+  var three60 = $('.car').ThreeSixty({styles: {float: 'left'}});
+  equal(three60.$el.css('float'), 'left', 'background not removed');
+});
+
+test("should change the width to 100% if the responsive true is passed in config", function() {
+  var three60 = $('.car').ThreeSixty({responsive: true});
+  var width = three60.$el.width();
+  var parentWidth = three60.$el.offsetParent().width();
+  var percent = 100*width/parentWidth;
+  equal(percent, 100, 'width not changing if on responsive true');
+});
+
