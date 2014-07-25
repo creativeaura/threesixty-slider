@@ -62,3 +62,39 @@ test("should change the width to 100% if the responsive true is passed in config
   equal(percent, 100, 'width not changing if on responsive true');
 });
 
+test("should hide the imgList ul while it show the progress and load images", function() {
+  var three60 = $('.car').ThreeSixty({styles: {float: 'left'}});
+  var _config = three60.getConfig();
+  ok(three60.$el.find(_config.imgList).is(':hidden'), 'Image list still visible on progress');
+});
+
+test("should return number with zero padding", function() {
+  var three60 = $('.car').ThreeSixty({zeroPadding: true});
+  
+  equal(three60.zeroPad(12), '012');
+  equal(three60.zeroPad(2), '002');
+  equal(three60.zeroPad(83), '083');
+});
+
+
+test("Should display the navigation controls", function() {
+  ok( true );
+  var three60 = $('.car').ThreeSixty({
+    	totalFrames: 52,
+      endFrame: 30,
+      currentFrame: 1,
+      imgList: '.threesixty_images',
+      progress: '.spinner',
+      imagePath:'http://360slider.com/img/car/',
+      filePrefix: '',
+      ext: '.png',
+      height: 447,
+      width: 1000,
+      navigation: true,
+      disableSpin: false,
+   		onReady: function() {
+     		ok(three60.$el.find('.nav_bar').is(':visible'), 'Navigation not visible');
+     		start();
+    	}
+  });
+});
