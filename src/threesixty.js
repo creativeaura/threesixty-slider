@@ -802,9 +802,10 @@
        */
       imgList: '.threesixty_images'
     };
-    $.fn.ThreeSixty = function(options) {
-      return Object.create(new $.ThreeSixty(this, options));
-    };
+  };
+
+  $.fn.ThreeSixty = function(options) {
+    return Object.create(new $.ThreeSixty(this, options));
   };
 }(jQuery));
 /**

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/styles/threesixty.css">
+</head>
+<body>
+
+<div class="threesixty product1">
+  <div class="spinner">
+    <span>0%</span>
+  </div>
+  <ol class="threesixty_images"></ol>
+</div>
+
+
+<script src="demo/js/jquery-1.10.2.min.js"></script>
+<!-- build:js js/threesixty.min.js -->
+<script type="text/javascript" src='src/threesixty.js'></script>
+<!-- endbuild -->
+<script type="text/javascript">
+  window.onload = init;
+
+  var product;
+
+  function init(){
+
+    product1 = $('.product1').ThreeSixty({
+      totalFrames: 52,
+      endFrame: 30,
+      currentFrame: 1,
+      drag: true,
+      imgList: '.threesixty_images',
+      progress: '.spinner',
+      imagePath:'demo/img/car/',
+      filePrefix: '',
+      ext: '.png',
+      height: 447,
+      width: 1000,
+      navigation: true,
+      disableSpin: false,
+      onReady: function () {
+        //
+      }
+    });
+
+  }
+
+</script>
+</body>
+</html>
