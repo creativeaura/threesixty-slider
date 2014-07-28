@@ -91,7 +91,7 @@ test("Should display the navigation controls", function() {
       currentFrame: 1,
       imgList: '.threesixty_images',
       progress: '.spinner',
-      imagePath:'demo/img/car/',
+    	imagePath:'../demo/img/car/',
       filePrefix: '',
       ext: '.png',
       height: 447,
@@ -99,7 +99,7 @@ test("Should display the navigation controls", function() {
       navigation: true,
       disableSpin: false,
    		onReady: function() {
-     		ok(three60.$el.find('.nav_bar').is(':visible'), 'Navigation not visible');
+     		ok(three60.$el.find('.nav_bar').is(':visible'), 'navigation not visible');
      		start();
     	}
   });

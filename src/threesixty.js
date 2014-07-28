@@ -621,7 +621,7 @@
     base.getConfig = function() {
       return AppCongif;
     };
-    base.init();
+    
     $.ThreeSixty.defaultOptions = {
       /**
        * @cfg {Boolean} dragging [dragging=false]
@@ -812,8 +812,14 @@
        * @cfg {String} imgList
        * Set ul element where image will be loaded
        */
-      imgList: '.threesixty_images'
+      imgList: '.threesixty_images',
+      /**
+       * @cfg {Array} imgArray
+       * Use set of images in array to load images
+       */
+      imgArray: null
     };
+    base.init();
   };
 
   $.fn.ThreeSixty = function(options) {
