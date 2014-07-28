@@ -83,7 +83,8 @@ test("should return the current frame", function() {
   equal(three60.getCurrentFrame(), 0, 'wrong current frame');
 });
 
-test("Should display the navigation controls", function() {
+
+asyncTest("Should display the navigation controls", function() {
   ok( true );
   var three60 = $('.car').ThreeSixty({
     	totalFrames: 52,
@@ -99,8 +100,11 @@ test("Should display the navigation controls", function() {
       navigation: true,
       disableSpin: false,
    		onReady: function() {
-     		ok(three60.$el.find('.nav_bar').is(':visible'), 'navigation not visible');
-     		start();
+        setTimeout(function() {
+          console.log(three60.$el.find('.nav_bar').length);
+          ok(three60.$el.find('.nav_bar').is(':visible'), 'navigation not visible');
+          start();
+        }, 1000);
     	}
   });
 });
