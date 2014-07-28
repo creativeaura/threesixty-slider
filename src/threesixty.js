@@ -553,6 +553,18 @@
       return c;
     };
     
+    /*
+     * @method getCurrentFrame
+     * Function returns the current active frame.
+     * 
+     * @return Number
+     */
+    
+    base.getCurrentFrame = function() {
+      return AppCongif.currentFrame;
+    };
+    
+  
     /**
      * Function to return with zero padding.
      */

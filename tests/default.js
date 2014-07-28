@@ -76,6 +76,12 @@ test("should return number with zero padding", function() {
   equal(three60.zeroPad(83), '083');
 });
 
+test("should return the current frame", function() {
+  var three60 = $('.car').ThreeSixty({zeroPadding: true});
+  
+  ok(typeof(three60.getCurrentFrame) !== 'undefined', 'getCurrentFrame function not defined');
+  equal(three60.getCurrentFrame(), 0, 'wrong current frame');
+});
 
 test("Should display the navigation controls", function() {
   ok( true );
@@ -85,7 +91,7 @@ test("Should display the navigation controls", function() {
       currentFrame: 1,
       imgList: '.threesixty_images',
       progress: '.spinner',
-      imagePath:'http://360slider.com/img/car/',
+      imagePath:'demo/img/car/',
       filePrefix: '',
       ext: '.png',
       height: 447,
