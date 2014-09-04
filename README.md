@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/creativeaura/threesixty-slider.png?label=ready&title=Ready)](https://waffle.io/creativeaura/threesixty-slider)
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
 
 
