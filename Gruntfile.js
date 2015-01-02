@@ -18,7 +18,7 @@ require('time-grunt')(grunt);
           paths: ["styles"]
         },
         files: {
-          "styles/threesixty.css": "styles/threesixty.less"
+          "src/styles/threesixty.css": "src/styles/threesixty.less"
         }
       }
     },
