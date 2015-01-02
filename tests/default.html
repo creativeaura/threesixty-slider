@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset='UTF-8' />
+      <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+
+      <title>jQuery.simpleFAQ QUnit Test Runner</title>
+
+      <link rel='stylesheet' href='../node_modules/qunitjs/qunit/qunit.css'>
+
+      <!-- add any external libraries your code needs -->
+      <script src='../bower_components/jquery/jquery.js'></script>
+
+      <script src='../src/threesixty.js'></script>
+      <!-- add any JS files under test (or put them in different .html files) -->
+
+      <script src='../node_modules/qunitjs/qunit/qunit.js'></script>
+
+      <!-- your tests, any and all to run with the given fixtures below -->
+      <script src='default.js'></script>
+
+  </head>
+  <body>
+    <div id="qunit"></div> <!-- QUnit fills this with results, etc -->
+    <div id='qunit-fixture'>
+
+      <div class="threesixty car">
+          <div class="spinner">
+              <span>0%</span>
+          </div>
+          <ol class="threesixty_images"></ol>
+      </div>
+
+    </div>
+  </body>
+</html>

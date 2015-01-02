@@ -1,6 +1,6 @@
 /*!
  * 360 degree Image Slider v2.0.0
- * http://gaurav.jassal.me/lab
+ * http://gaurav.jassal.me
  *
  * Copyright 2013, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
@@ -91,7 +91,6 @@
      *          background: url(http://example.com/images/loader.gif) no-repeat
      *        }
      *      });
-     * @return this
      */
     base.init = function() {
       AppCongif = $.extend({}, $.ThreeSixty.defaultOptions, options);
@@ -101,6 +100,13 @@
       }
       base.initProgress();
       base.loadImages();
+    };
+
+    /*
+     * Function to resize the height of responsive slider.
+     */
+    base.resize = function() {
+      // calculate height
     };
     /**
      * @method initProgress
@@ -118,18 +124,16 @@
       if(AppCongif.styles) {
         base.$el.css(AppCongif.styles);
       }
-      if(AppCongif.responsive) {
-        base.$el.css({
-          width: '100%'
-        });
-      }
+
+      base.responsive();
+
       base.$el.find(AppCongif.progress).css({
         marginTop: ((AppCongif.height / 2) - 15) + 'px'
       });
       base.$el.find(AppCongif.progress).fadeIn('slow');
       base.$el.find(AppCongif.imgList).hide();
     };
-    
+
     /**
      * @method loadImages
      * @private
@@ -152,7 +156,7 @@
         base.imageLoaded();
       });
     };
-    
+
     /**
      * @method loadImages
      * @private
@@ -175,7 +179,7 @@
         base.loadImages();
       }
     };
-    
+
     /**
      * @method loadImages
      * @private
@@ -196,10 +200,11 @@
       }
       base.refresh();
       base.initPlugins();
-
       AppCongif.onReady();
+
+      setTimeout(function() { base.responsive(); }, 50);
     };
-    
+
     /**
      * The function to initilize external plugin
      */
@@ -212,7 +217,7 @@
         }
       });
     };
-    
+
     /**
      * @method showNavigation
      * Creates a navigation panel if navigation is set to true in the
@@ -265,7 +270,7 @@
 
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, 40);
+        AppCongif.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
         $(event.currentTarget).removeClass('nav_bar_play').addClass('nav_bar_stop');
       } else {
         AppCongif.autoplay = false;
@@ -308,7 +313,7 @@
     base.play = function() {
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, 40);
+        AppCongif.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
       }
     };
 
@@ -419,6 +424,10 @@
         $(this).css('cursor', 'none');
       });
 
+      $(window).bind('resize', function (event) {
+        base.responsive();
+      });
+
       $(document).bind('mousemove', function (event) {
         if (AppCongif.dragging) {
           event.preventDefault();
@@ -432,6 +441,10 @@
         }
         base.trackPointer(event);
 
+      });
+
+      $(window).resize(function() {
+        base.resize();
       });
     };
 
@@ -552,19 +565,34 @@
 
       return c;
     };
-    
+
     /*
      * @method getCurrentFrame
      * Function returns the current active frame.
-     * 
+     *
      * @return Number
      */
-    
+
     base.getCurrentFrame = function() {
       return AppCongif.currentFrame;
     };
-    
-  
+
+    /*
+    * @method responsive
+    * Function calculates and set responsive height and width
+    *
+    */
+
+    base.responsive = function() {
+      if(AppCongif.responsive) {
+        console.log(base.$el.find('.current-image').first().css('height'));
+        base.$el.css({
+          height: base.$el.find('.current-image').first().css('height'),
+          width: '100%'
+        });
+      }
+    };
+
     /**
      * Function to return with zero padding.
      */
@@ -585,9 +613,9 @@
         var numChars = Math.floor(roundedLog) + 1;
         return pad(num, numChars);
     };
-    
+
     base.browser = {};
-    
+
     /**
      * Function to detect if the brower is IE
      * @return {boolean}
@@ -607,21 +635,21 @@
 
       return rv !== -1;
     };
-  
-    
+
+
     /**
      * @method getConfig
      * The function returns the extended version of config object the plugin is going to
-     * user. 
-     * 
+     * user.
+     *
      * @public
-     * 
+     *
      * @return Object
      */
     base.getConfig = function() {
       return AppCongif;
     };
-    
+
     $.ThreeSixty.defaultOptions = {
       /**
        * @cfg {Boolean} dragging [dragging=false]
@@ -817,7 +845,12 @@
        * @cfg {Array} imgArray
        * Use set of images in array to load images
        */
-      imgArray: null
+      imgArray: null,
+      /**
+      * @cfg {Number} playSpeed
+      * Value to control the speed of play button rotation
+      */
+      playSpeed: 100
     };
     base.init();
   };

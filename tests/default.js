@@ -31,7 +31,7 @@ test("Threesixty Default values", function() {
   equal($.ThreeSixty.defaultOptions.zeroPadding, false, "zeroPadding should be false");
   equal($.ThreeSixty.defaultOptions.zeroBased, false, "zeroBased should be false");
   equal($.ThreeSixty.defaultOptions.showCursor, false, "showCursor should be false");
-	equal($.ThreeSixty.defaultOptions.drag, true, "Drag should be true");  
+	equal($.ThreeSixty.defaultOptions.drag, true, "Drag should be true");
 });
 
 
@@ -39,7 +39,7 @@ test("Should default config extend custom config values and update", function() 
   var three60 = $('.car').ThreeSixty({domain: 'http://', totalFrames: 80});
   var _config = three60.getConfig();
   notEqual(typeof(three60.getConfig), 'undefined', 'getConfig function not defined');
-  
+
   equal(_config.domain, 'http://','custom config didnt get updated');
   equal(_config.totalFrames, 80,'custom config didnt get updated');
 });
@@ -70,7 +70,7 @@ test("should hide the imgList ul while it show the progress and load images", fu
 
 test("should return number with zero padding", function() {
   var three60 = $('.car').ThreeSixty({zeroPadding: true});
-  
+
   equal(three60.zeroPad(12), '012');
   equal(three60.zeroPad(2), '002');
   equal(three60.zeroPad(83), '083');
@@ -78,7 +78,7 @@ test("should return number with zero padding", function() {
 
 test("should return the current frame", function() {
   var three60 = $('.car').ThreeSixty({zeroPadding: true});
-  
+
   ok(typeof(three60.getCurrentFrame) !== 'undefined', 'getCurrentFrame function not defined');
   equal(three60.getCurrentFrame(), 0, 'wrong current frame');
 });
@@ -92,7 +92,7 @@ asyncTest("Should display the navigation controls", function() {
       currentFrame: 1,
       imgList: '.threesixty_images',
       progress: '.spinner',
-    	imagePath:'../demo/img/car/',
+    	imagePath:'../assets/',
       filePrefix: '',
       ext: '.png',
       height: 447,
@@ -104,7 +104,7 @@ asyncTest("Should display the navigation controls", function() {
           console.log(three60.$el.find('.nav_bar').length);
           ok(three60.$el.find('.nav_bar').is(':visible'), 'navigation not visible');
           start();
-        }, 1000);
+        }, 2000);
     	}
   });
 });

@@ -12,15 +12,6 @@ require('time-grunt')(grunt);
         dest: 'dist/threesixty.min.js'
       }
     },
-    connect: {
-      demo: {
-        options: {
-          port: 9001,
-          base: '',
-          keepalive: true
-        }
-      }
-    },
     less: {
       development: {
         options: {
@@ -93,6 +84,4 @@ require('time-grunt')(grunt);
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'uglify']);
   grunt.registerTask('build', ['uglify']);
-  grunt.registerTask('deploy', ['copy:deploy', 'usemin:html', 'copy:dist']);
-  grunt.registerTask('demo', ['connect:demo']);
 };

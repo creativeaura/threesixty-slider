@@ -20,7 +20,7 @@ This is a jQuery plugin to create 360 degree product image slider. The plugin is
 - No flash
 - Plugin integration
 
-Plugins 
+Plugins
 ---------------------
 
 - [Drupal module](https://drupal.org/sandbox/coderider/2274229) by [Rashid Abdullah](https://drupal.org/u/coderider)  
@@ -183,4 +183,3 @@ LICENSE
 Copyright 2013 Gaurav Jassal
 
 Released under the MIT and GPL Licenses.
-

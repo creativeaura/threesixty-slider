@@ -1,3 +1,10 @@
+## 2.0.0 (Jan 1th, 2015)
+
+- Feature - Option add to control the speed of the play rotation. [Issue #53](https://github.com/creativeaura/threesixty-slider/issues/53)
+- container dependency removed from css now . [Issue #51](https://github.com/creativeaura/threesixty-slider/issues/51)
+- recalculate height on resize if responsive true . [Issue #34](https://github.com/creativeaura/threesixty-slider/issues/34)
+
+
 ## 1.0.9 (May 12th, 2014)
 
 - BUG - base.browser.isIE returns TRUE on non IE browser [Issue #43](https://github.com/creativeaura/threesixty-slider/issues/43)
