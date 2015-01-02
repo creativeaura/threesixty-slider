@@ -1,8 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/creativeaura/threesixty-slider.png?label=ready&title=Ready)](https://waffle.io/creativeaura/threesixty-slider)
-![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/images/360.png)
+![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/assets/360.png)
 
 
-Three Sixty Image slider plugin v1.0.9
+Three Sixty Image slider plugin v2.0.0
 =================
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
@@ -168,7 +168,7 @@ Demo
 
 Browsers Supported
 ---------------------
-![Browsers Supported](https://raw.github.com/creativeaura/threesixty-slider/master/images/browser_logos-64.png)
+![Browsers Supported](https://raw.github.com/creativeaura/threesixty-slider/master/assets/browser_logos-64.png)
 
 This plugin is supported in all browsers including our beloved IE 6
 
