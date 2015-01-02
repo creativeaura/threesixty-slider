@@ -1,14 +1,15 @@
 {
-	"name": "threesixty-slider",
-		"description": "360 degree Image Slider",
-		"main": "dist/threesixty.min.js",
-		"version": "1.0.9",
-		"ignore": [
-			".jshintrc",
-		".editorconfig",
-		".bowerrc"
-			],
-		"dependencies": {},
-		"devDependencies": {
-		}
+  "name": "threesixty-slider",
+  "description": "360 degree Image Slider",
+  "main": "dist/threesixty.min.js",
+  "version": "1.0.9",
+  "ignore": [
+    ".jshintrc",
+    ".editorconfig",
+    ".bowerrc"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "~1.8.3"
+  }
 }

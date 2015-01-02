@@ -1,18 +1,14 @@
-/*global $, window, CanvasLoader, jQuery, alert, requestAnimationFrame, cancelAnimationFrame */
-/*jslint browser:true, devel:true */
-
 /*!
- * 360 degree Image Slider v1.0.8
- * http://gaurav.jassal.me/lab
+ * 360 degree Image Slider v2.0.0
+ * http://gaurav.jassal.me
  *
  * Copyright 2013, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
  *
  */
-
-(function ($) {
+(function($) {
   'use strict';
-   /**
+  /**
    * @class ThreeSixty
    * **The ThreeSixty slider class**.
    *
@@ -57,24 +53,21 @@
    *
    * @return this
    */
-
-  $.ThreeSixty = function (el, options) {
+  $.ThreeSixty = function(el, options) {
     // To avoid scope issues, use 'base' instead of 'this'
     // to reference this class from internal events and functions.
-    var base = this, AppCongif, frames = [], VERSION = '1.0.7';
-
+    var base = this,
+      AppCongif, frames = [],
+      VERSION = '2.0.0';
     // Access to jQuery and DOM versions of element
     /**
      * @property {$el}
      * jQuery Dom node attached to the slider inherits all jQuery public functions.
      */
-
     base.$el = $(el);
     base.el = el;
-
     // Add a reverse reference to the DOM object
     base.$el.data('ThreeSixty', base);
-
     /**
      * @method init
      * The function extends the user options with default settings for the
@@ -98,44 +91,46 @@
      *          background: url(http://example.com/images/loader.gif) no-repeat
      *        }
      *      });
-     * @return this
      */
-    base.init = function () {
+    base.init = function() {
       AppCongif = $.extend({}, $.ThreeSixty.defaultOptions, options);
-      if (!AppCongif.parallel) {
-        base.loadImages();
-      }
       if(AppCongif.disableSpin) {
-				AppCongif.currentFrame = 1;
-				AppCongif.endFrame = 1;
+        AppCongif.currentFrame = 1;
+        AppCongif.endFrame = 1;
       }
       base.initProgress();
+      base.loadImages();
     };
 
+    /*
+     * Function to resize the height of responsive slider.
+     */
+    base.resize = function() {
+      // calculate height
+    };
     /**
      * @method initProgress
-     * @private
-     * This function setup the progress indicator styles.
-     * If you want to overreide the default styles of the progress indicator
-     * you need to pass the css styles in the styles property in plugin options.
+     * The function sets initial styles and start the progress indicator
+     * to show loading of images.
      *
+     * @private
      */
     base.initProgress = function() {
       base.$el.css({
         width: AppCongif.width + 'px',
         height: AppCongif.height + 'px',
         'background-image': 'none !important'
-      }).css(AppCongif.styles);
-
-      if(AppCongif.responsive) {
-         base.$el.css({ width: '100%' });
+      });
+      if(AppCongif.styles) {
+        base.$el.css(AppCongif.styles);
       }
+
+      base.responsive();
+
       base.$el.find(AppCongif.progress).css({
         marginTop: ((AppCongif.height / 2) - 15) + 'px'
       });
-
       base.$el.find(AppCongif.progress).fadeIn('slow');
-
       base.$el.find(AppCongif.imgList).hide();
     };
 
@@ -161,6 +156,7 @@
         base.imageLoaded();
       });
     };
+
     /**
      * @method loadImages
      * @private
@@ -204,8 +200,9 @@
       }
       base.refresh();
       base.initPlugins();
-
       AppCongif.onReady();
+
+      setTimeout(function() { base.responsive(); }, 50);
     };
 
     /**
@@ -273,7 +270,7 @@
 
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, 40);
+        AppCongif.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
         $(event.currentTarget).removeClass('nav_bar_play').addClass('nav_bar_stop');
       } else {
         AppCongif.autoplay = false;
@@ -316,7 +313,7 @@
     base.play = function() {
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, 40);
+        AppCongif.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
       }
     };
 
@@ -427,6 +424,10 @@
         $(this).css('cursor', 'none');
       });
 
+      $(window).bind('resize', function (event) {
+        base.responsive();
+      });
+
       $(document).bind('mousemove', function (event) {
         if (AppCongif.dragging) {
           event.preventDefault();
@@ -440,6 +441,10 @@
         }
         base.trackPointer(event);
 
+      });
+
+      $(window).resize(function() {
+        base.resize();
       });
     };
 
@@ -560,6 +565,34 @@
 
       return c;
     };
+
+    /*
+     * @method getCurrentFrame
+     * Function returns the current active frame.
+     *
+     * @return Number
+     */
+
+    base.getCurrentFrame = function() {
+      return AppCongif.currentFrame;
+    };
+
+    /*
+    * @method responsive
+    * Function calculates and set responsive height and width
+    *
+    */
+
+    base.responsive = function() {
+      if(AppCongif.responsive) {
+        console.log(base.$el.find('.current-image').first().css('height'));
+        base.$el.css({
+          height: base.$el.find('.current-image').first().css('height'),
+          width: '100%'
+        });
+      }
+    };
+
     /**
      * Function to return with zero padding.
      */
@@ -602,215 +635,239 @@
 
       return rv !== -1;
     };
+
+
+    /**
+     * @method getConfig
+     * The function returns the extended version of config object the plugin is going to
+     * user.
+     *
+     * @public
+     *
+     * @return Object
+     */
+    base.getConfig = function() {
+      return AppCongif;
+    };
+
+    $.ThreeSixty.defaultOptions = {
+      /**
+       * @cfg {Boolean} dragging [dragging=false]
+       * @private
+       * Private propery contains a flags if users is in dragging mode.
+       */
+      dragging: false,
+      /**
+       * @cfg {Boolean} ready [ready=false]
+       * @private
+       * Private propery is set to true is all assets are loading and application is
+       * ready to render 360 slider.
+       */
+      ready: false,
+      /**
+       * @cfg {Number} pointerStartPosX
+       * @private
+       * private property mouse pointer start x position when user starts dragging slider.
+       */
+      pointerStartPosX: 0,
+      /**
+       * @cfg {Number} pointerEndPosX
+       * @private
+       * private property mouse pointer start x position when user end dragging slider.
+       */
+      pointerEndPosX: 0,
+      /**
+       * @cfg {Number} pointerDistance
+       * @private
+       * private property contains the distance between the pointerStartPosX and pointerEndPosX
+       */
+      pointerDistance: 0,
+      /**
+       * @cfg {Number} monitorStartTime
+       * @private
+       * private property contains time user took in dragging mouse from pointerStartPosX and pointerEndPosX
+       */
+      monitorStartTime: 0,
+      monitorInt: 10,
+      /**
+       * @cfg {Number} ticker
+       * @private
+       * Timer event that renders the 360
+       */
+      ticker: 0,
+      /**
+       * @cfg {Number} speedMultiplier
+       * This property controls the sensitivity for the 360 slider
+       */
+      speedMultiplier: 7,
+      /**
+       * @cfg {Number} totalFrames
+       * Set total number for frames used in the 360 rotation
+       */
+      totalFrames: 180,
+      /**
+       * @cfg {Number} currentFrame
+       * Current frame of the slider.
+       */
+      currentFrame: 0,
+      /**
+       * @cfg {Array} endFrame
+       * Private perperty contains information about the end frame when user slides the slider.
+       */
+      endFrame: 0,
+      /**
+       * @cfg {Number} loadedImages
+       * Private property contains count of loaded images.
+       */
+      loadedImages: 0,
+      /**
+       * @cfg {Array} framerate
+       * Set framerate for the slider animation
+       */
+      framerate: 60,
+      /**
+       * @cfg {String} domains
+       * Set comma seprated list of all parallel domain from where 360 assets needs to be loaded.
+       */
+      domains: null,
+      /**
+       * @cfg {String} domain
+       * Domain from where assets needs to be loaded. Use this propery is you want to load all assets from
+       * single domain.
+       */
+      domain: '',
+      /**
+       * @cfg {Boolean} parallel
+       * Set to true if you want to load assets from parallel domain. Default false
+       */
+      parallel: false,
+      /**
+       * @cfg {Number} queueAmount
+       * Set number of calls to be made on parallel domains.
+       */
+      queueAmount: 8,
+      /**
+       * @cfg {Number} idle
+       * Mouse Inactivite idle time in seconds. If set more than 0 will auto spine the slider
+       */
+      idle: 0,
+      /**
+       * @cfg {String} filePrefix
+       * Prefix for the image file name before the numeric value.
+       */
+      filePrefix: '',
+      /**
+       * @cfg {String} ext [ext=.png]
+       * Slider image extension.
+       */
+      ext: 'png',
+      /**
+       * @cfg {Object} height [300]
+       * Height of the slider
+       */
+      height: 300,
+      /**
+       * @cfg {Number} width [300]
+       * Width of the slider
+       */
+      width: 300,
+      /**
+       * @cfg {Object} styles
+       * CSS Styles for the 360 slider
+       */
+      styles: {},
+      /**
+       * @cfg {Boolean} navigation[false]
+       * State if navigation controls are visible or not.
+       */
+      navigation: false,
+      /**
+       * @cfg {Boolean} autoplay[false]
+       * Autoplay the 360 animation
+       */
+      autoplay: false,
+      /**
+       * @cfg {number} autoplayDirection [1]
+       * Direction for autoplay the 360 animation. 1 for right spin, and -1 for left spin.
+       */
+      autoplayDirection: 1,
+      /**
+       * Property to disable auto spin
+       * @type {Boolean}
+       */
+      disableSpin: false,
+      /**
+       * Property to disable infinite wrap
+       * @type {Boolean}
+       */
+      disableWrap: false,
+      /**
+       * Responsive width
+       * @type {Boolean}
+       */
+      responsive: false,
+      /**
+       * Zero Padding for filenames
+       * @type {Boolean}
+       */
+      zeroPadding: false,
+      /**
+       * Zero based for image filenames starting at 0
+       * @type {Boolean}
+       */
+      zeroBased: false,
+      /**
+       * @type {Array}
+       * List of plugins
+       */
+      plugins: [],
+      /**
+       * @type {Boolean}
+       * Show hand cursor on drag
+       */
+      showCursor: false,
+      /**
+       * @cfg {Boolean} drag
+       * Set it to false if you want to disable mousedrag or touch events
+       */
+      drag: true,
+      /**
+       * @cfg {Function} onReady
+       * Callback triggers once all images are loaded and ready to render on the screen
+       */
+      onReady: function() {},
+      /**
+       * @cfg {String} imgList
+       * Set ul element where image will be loaded
+       */
+      imgList: '.threesixty_images',
+      /**
+       * @cfg {Array} imgArray
+       * Use set of images in array to load images
+       */
+      imgArray: null,
+      /**
+      * @cfg {Number} playSpeed
+      * Value to control the speed of play button rotation
+      */
+      playSpeed: 100
+    };
     base.init();
   };
 
-  $.ThreeSixty.defaultOptions = {
-    /**
-     * @cfg {Boolean} dragging [dragging=false]
-     * @private
-     * Private propery contains a flags if users is in dragging mode.
-     */
-    dragging: false,
-    /**
-     * @cfg {Boolean} ready [ready=false]
-     * @private
-     * Private propery is set to true is all assets are loading and application is
-     * ready to render 360 slider.
-     */
-    ready: false,
-    /**
-     * @cfg {Number} pointerStartPosX
-     * @private
-     * private property mouse pointer start x position when user starts dragging slider.
-     */
-    pointerStartPosX: 0,
-    /**
-     * @cfg {Number} pointerEndPosX
-     * @private
-     * private property mouse pointer start x position when user end dragging slider.
-     */
-    pointerEndPosX: 0,
-    /**
-     * @cfg {Number} pointerDistance
-     * @private
-     * private property contains the distance between the pointerStartPosX and pointerEndPosX
-     */
-    pointerDistance: 0,
-    /**
-     * @cfg {Number} monitorStartTime
-     * @private
-     * private property contains time user took in dragging mouse from pointerStartPosX and pointerEndPosX
-     */
-    monitorStartTime: 0,
-    monitorInt: 10,
-    /**
-     * @cfg {Number} ticker
-     * @private
-     * Timer event that renders the 360
-     */
-    ticker: 0,
-    /**
-     * @cfg {Number} speedMultiplier
-     * This property controls the sensitivity for the 360 slider
-     */
-    speedMultiplier: 7,
-    /**
-     * @cfg {Number} totalFrames
-     * Set total number for frames used in the 360 rotation
-     */
-    totalFrames: 180,
-    /**
-     * @cfg {Number} currentFrame
-     * Current frame of the slider.
-     */
-    currentFrame: 0,
-    /**
-     * @cfg {Array} endFrame
-     * Private perperty contains information about the end frame when user slides the slider.
-     */
-    endFrame: 0,
-    /**
-     * @cfg {Number} loadedImages
-     * Private property contains count of loaded images.
-     */
-    loadedImages: 0,
-    /**
-     * @cfg {Array} framerate
-     * Set framerate for the slider animation
-     */
-    framerate: 60,
-    /**
-     * @cfg {String} domains
-     * Set comma seprated list of all parallel domain from where 360 assets needs to be loaded.
-     */
-    domains: null,
-    /**
-     * @cfg {String} domain
-     * Domain from where assets needs to be loaded. Use this propery is you want to load all assets from
-     * single domain.
-     */
-    domain: '',
-    /**
-     * @cfg {Boolean} parallel
-     * Set to true if you want to load assets from parallel domain. Default false
-     */
-    parallel: false,
-    /**
-     * @cfg {Number} queueAmount
-     * Set number of calls to be made on parallel domains.
-     */
-    queueAmount: 8,
-    /**
-     * @cfg {Number} idle
-     * Mouse Inactivite idle time in seconds. If set more than 0 will auto spine the slider
-     */
-    idle: 0,
-    /**
-     * @cfg {String} filePrefix
-     * Prefix for the image file name before the numeric value.
-     */
-    filePrefix: '',
-    /**
-     * @cfg {String} ext [ext=.png]
-     * Slider image extension.
-     */
-    ext: 'png',
-    /**
-     * @cfg {Object} height [300]
-     * Height of the slider
-     */
-    height: 300,
-    /**
-     * @cfg {Number} width [300]
-     * Width of the slider
-     */
-    width: 300,
-
-    /**
-     * @cfg {Object} styles
-     * CSS Styles for the 360 slider
-     */
-    styles: {},
-    /**
-     * @cfg {Boolean} navigation[false]
-     * State if navigation controls are visible or not.
-     */
-    navigation: false,
-    /**
-     * @cfg {Boolean} autoplay[false]
-     * Autoplay the 360 animation
-     */
-    autoplay: false,
-    /**
-     * @cfg {number} autoplayDirection [1]
-     * Direction for autoplay the 360 animation. 1 for right spin, and -1 for left spin.
-     */
-    autoplayDirection: 1,
-    /**
-     * Property to disable auto spin
-     * @type {Boolean}
-     */
-    disableSpin: false,
-    /**
-     * Property to disable infinite wrap
-     * @type {Boolean}
-     */
-    disableWrap: false,
-    /**
-     * Responsive width
-     * @type {Boolean}
-     */
-    responsive: false,
-    /**
-     * Zero Padding for filenames
-     * @type {Boolean}
-     */
-    zeroPadding: false,
-    /**
-     * Zero based for image filenames starting at 0
-     * @type {Boolean}
-     */
-     zeroBased: false,
-    /**
-     * @type {Array}
-     * List of plugins
-     */
-    plugins: [],
-    /**
-     * @type {Boolean}
-     * Show hand cursor on drag
-     */
-    showCursor: false,
-    /**
-     * @cfg {Boolean} drag
-     * Set it to false if you want to disable mousedrag or touch events
-     */
-    drag : true,
-    /**
-     * @cfg {Function} onReady
-     * Callback triggers once all images are loaded and ready to render on the screen
-     */
-    onReady : function() {}
-
-
-  };
-
-
-  $.fn.ThreeSixty = function (options) {
+  $.fn.ThreeSixty = function(options) {
     return Object.create(new $.ThreeSixty(this, options));
   };
-
 }(jQuery));
-
 /**
  *
  * Object.create method for perform as a fallback if method not available.
  * The syntax just takes away the illusion that JavaScript uses Classical Inheritance.
  */
-if (typeof Object.create !== 'function') {
-  Object.create = function (o) {
-		'use strict';
+if(typeof Object.create !== 'function') {
+  Object.create = function(o) {
+    'use strict';
+
     function F() {}
     F.prototype = o;
     return new F();
