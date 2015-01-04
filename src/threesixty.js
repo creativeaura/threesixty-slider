@@ -1,5 +1,5 @@
 /*!
- * 360 degree Image Slider v2.0.1
+ * 360 degree Image Slider v2.0.2
  * http://gaurav.jassal.me
  *
  * Copyright 2015, gaurav@jassal.me
@@ -310,10 +310,11 @@
      * You are start the auto rotaion for the slider with this function.
      *
      */
-    base.play = function() {
+    base.play = function(speed) {
+      var _speed = speed || 40;
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, 40);
+        AppCongif.play = setInterval(base.moveToNextFrame, _speed);
       }
     };
 

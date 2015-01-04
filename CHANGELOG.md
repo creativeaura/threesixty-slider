@@ -1,3 +1,6 @@
+## 2.0.2 (Jan 1th, 2015)
+- Feature - pass animation speed in play function. [Issue #53](https://github.com/creativeaura/threesixty-slider/issues/53)
+
 ## 2.0.1 (Jan 1th, 2015)
 - Removed console log from a function
 
