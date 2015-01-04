@@ -311,10 +311,9 @@
      *
      */
     base.play = function() {
-      var playSpeed = AppConfig.playSpeed;
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, playSpeed);
+        AppCongif.play = setInterval(base.moveToNextFrame, 40);
       }
     };
 
