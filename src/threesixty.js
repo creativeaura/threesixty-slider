@@ -2,7 +2,7 @@
  * 360 degree Image Slider v2.0.0
  * http://gaurav.jassal.me
  *
- * Copyright 2013, gaurav@jassal.me
+ * Copyright 2015, gaurav@jassal.me
  * Dual licensed under the MIT or GPL Version 3 licenses.
  *
  */

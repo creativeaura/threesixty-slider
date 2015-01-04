@@ -25,5 +25,8 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-qunit": "~0.5.2",
     "qunitjs": "~1.14.0"
+  },
+  "scripts": {
+    "test": "grunt qunit"
   }
 }
