@@ -552,7 +552,7 @@
       if ( !AppCongif.disableWrap ) {
         c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
         if (c < 0) {
-          c += (AppCongif.totalFrames - 1);
+          c += AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0);
         }
       } else {
         c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
