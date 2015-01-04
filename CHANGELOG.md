@@ -1,3 +1,6 @@
+## 2.0.1 (Jan 1th, 2015)
+- Removed console log from a function
+
 ## 2.0.0 (Jan 1th, 2015)
 
 - Feature - Option add to control the speed of the play rotation. [Issue #53](https://github.com/creativeaura/threesixty-slider/issues/53)
