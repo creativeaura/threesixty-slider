@@ -585,7 +585,6 @@
 
     base.responsive = function() {
       if(AppCongif.responsive) {
-        console.log(base.$el.find('.current-image').first().css('height'));
         base.$el.css({
           height: base.$el.find('.current-image').first().css('height'),
           width: '100%'
