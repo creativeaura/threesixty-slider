@@ -1,11 +1,12 @@
-[![Stories in Ready](https://badge.waffle.io/creativeaura/threesixty-slider.png?label=ready&title=Ready)](https://waffle.io/creativeaura/threesixty-slider)
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/assets/360.png)
+
 
 
 Three Sixty Image slider plugin v2.0.0
 =================
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/creativeaura/threesixty-slider.svg?branch=master)](https://travis-ci.org/creativeaura/threesixty-slider)
 
 This is a jQuery plugin to create 360 degree product image slider. The plugin is full customizable with number of options provided. The plugin have the power to display images in any angle 360 degrees. This feature can be used successfully in many use cases e.g. on an e-commerce site to help customers look products in detail, from any angle they desire.
 
