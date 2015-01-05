@@ -1,5 +1,5 @@
 /*!
- * 360 degree Image Slider v2.0.3
+ * 360 degree Image Slider v2.0.4
  * http://gaurav.jassal.me
  *
  * Copyright 2015, gaurav@jassal.me
@@ -311,7 +311,7 @@
      *
      */
     base.play = function(speed) {
-      var _speed = speed || 40;
+      var _speed = speed || AppCongif.playSpeed;
       if (!AppCongif.autoplay) {
         AppCongif.autoplay = true;
         AppCongif.play = setInterval(base.moveToNextFrame, _speed);

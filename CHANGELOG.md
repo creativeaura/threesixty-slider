@@ -1,3 +1,6 @@
+## 2.0.4 (Jan 5th, 2015)
+- Fixed typo for AppCongif . [Issue #59](https://github.com/creativeaura/threesixty-slider/issues/59)
+
 ## 2.0.3 (Jan 5th, 2015)
 - Get the last frame correctly . [Issue #60](https://github.com/creativeaura/threesixty-slider/issues/60)
 
