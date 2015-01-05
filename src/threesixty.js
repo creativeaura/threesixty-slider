@@ -1,5 +1,5 @@
 /*!
- * 360 degree Image Slider v2.0.2
+ * 360 degree Image Slider v2.0.3
  * http://gaurav.jassal.me
  *
  * Copyright 2015, gaurav@jassal.me

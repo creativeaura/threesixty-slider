@@ -1,3 +1,6 @@
+## 2.0.3 (Jan 5th, 2015)
+- Get the last frame correctly . [Issue #60](https://github.com/creativeaura/threesixty-slider/issues/60)
+
 ## 2.0.2 (Jan 1th, 2015)
 - Feature - pass animation speed in play function. [Issue #53](https://github.com/creativeaura/threesixty-slider/issues/53)
 
