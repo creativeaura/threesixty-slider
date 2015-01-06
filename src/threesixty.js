@@ -57,8 +57,8 @@
     // To avoid scope issues, use 'base' instead of 'this'
     // to reference this class from internal events and functions.
     var base = this,
-      AppCongif, frames = [],
-      VERSION = '2.0.0';
+      AppConfig, frames = [],
+      VERSION = '2.0.5';
     // Access to jQuery and DOM versions of element
     /**
      * @property {$el}
@@ -93,10 +93,10 @@
      *      });
      */
     base.init = function() {
-      AppCongif = $.extend({}, $.ThreeSixty.defaultOptions, options);
-      if(AppCongif.disableSpin) {
-        AppCongif.currentFrame = 1;
-        AppCongif.endFrame = 1;
+      AppConfig = $.extend({}, $.ThreeSixty.defaultOptions, options);
+      if(AppConfig.disableSpin) {
+        AppConfig.currentFrame = 1;
+        AppConfig.endFrame = 1;
       }
       base.initProgress();
       base.loadImages();
@@ -117,21 +117,21 @@
      */
     base.initProgress = function() {
       base.$el.css({
-        width: AppCongif.width + 'px',
-        height: AppCongif.height + 'px',
+        width: AppConfig.width + 'px',
+        height: AppConfig.height + 'px',
         'background-image': 'none !important'
       });
-      if(AppCongif.styles) {
-        base.$el.css(AppCongif.styles);
+      if(AppConfig.styles) {
+        base.$el.css(AppConfig.styles);
       }
 
       base.responsive();
 
-      base.$el.find(AppCongif.progress).css({
-        marginTop: ((AppCongif.height / 2) - 15) + 'px'
+      base.$el.find(AppConfig.progress).css({
+        marginTop: ((AppConfig.height / 2) - 15) + 'px'
       });
-      base.$el.find(AppCongif.progress).fadeIn('slow');
-      base.$el.find(AppCongif.imgList).hide();
+      base.$el.find(AppConfig.progress).fadeIn('slow');
+      base.$el.find(AppConfig.imgList).hide();
     };
 
     /**
@@ -142,15 +142,15 @@
     base.loadImages = function() {
       var li, imageName, image, host, baseIndex;
       li = document.createElement('li');
-      baseIndex = AppCongif.zeroBased ? 0 : 1;
-      imageName = !AppCongif.imgArray ?
-      AppCongif.domain + AppCongif.imagePath + AppCongif.filePrefix + base.zeroPad((AppCongif.loadedImages + baseIndex)) + AppCongif.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
-      AppCongif.imgArray[AppCongif.loadedImages];
+      baseIndex = AppConfig.zeroBased ? 0 : 1;
+      imageName = !AppConfig.imgArray ?
+      AppConfig.domain + AppConfig.imagePath + AppConfig.filePrefix + base.zeroPad((AppConfig.loadedImages + baseIndex)) + AppConfig.ext + ((base.browser.isIE()) ? '?' + new Date().getTime() : '') :
+      AppConfig.imgArray[AppConfig.loadedImages];
       image = $('<img>').attr('src', imageName).addClass('previous-image').appendTo(li);
 
       frames.push(image);
 
-      base.$el.find(AppCongif.imgList).append(li);
+      base.$el.find(AppConfig.imgList).append(li);
 
       $(image).load(function () {
         base.imageLoaded();
@@ -164,13 +164,13 @@
      * the progress percentage in this function.
      */
     base.imageLoaded = function () {
-      AppCongif.loadedImages += 1;
-      $(AppCongif.progress + ' span').text(Math.floor(AppCongif.loadedImages / AppCongif.totalFrames * 100) + '%');
-      if (AppCongif.loadedImages >= AppCongif.totalFrames) {
-        if(AppCongif.disableSpin) {
+      AppConfig.loadedImages += 1;
+      $(AppConfig.progress + ' span').text(Math.floor(AppConfig.loadedImages / AppConfig.totalFrames * 100) + '%');
+      if (AppConfig.loadedImages >= AppConfig.totalFrames) {
+        if(AppConfig.disableSpin) {
           frames[0].removeClass('previous-image').addClass('current-image');
         }
-        $(AppCongif.progress).fadeOut('slow', function () {
+        $(AppConfig.progress).fadeOut('slow', function () {
           $(this).hide();
           base.showImages();
           base.showNavigation();
@@ -191,16 +191,16 @@
      */
     base.showImages = function () {
       base.$el.find('.txtC').fadeIn();
-      base.$el.find(AppCongif.imgList).fadeIn();
+      base.$el.find(AppConfig.imgList).fadeIn();
       base.ready = true;
-      AppCongif.ready = true;
+      AppConfig.ready = true;
 
-      if (AppCongif.drag) {
+      if (AppConfig.drag) {
         base.initEvents();
       }
       base.refresh();
       base.initPlugins();
-      AppCongif.onReady();
+      AppConfig.onReady();
 
       setTimeout(function() { base.responsive(); }, 50);
     };
@@ -209,9 +209,9 @@
      * The function to initilize external plugin
      */
     base.initPlugins = function () {
-      $.each(AppCongif.plugins, function(i, plugin) {
+      $.each(AppConfig.plugins, function(i, plugin) {
         if(typeof $[plugin] === 'function') {
-          $[plugin].call(base, base.$el, AppCongif);
+          $[plugin].call(base, base.$el, AppConfig);
         } else {
           throw new Error(plugin + ' not available.');
         }
@@ -224,7 +224,7 @@
      * settings.
      */
     base.showNavigation = function() {
-      if (AppCongif.navigation && !AppCongif.navigation_init) {
+      if (AppConfig.navigation && !AppConfig.navigation_init) {
         var nav_bar, next, previous, play_stop;
 
         nav_bar = $('<div/>').attr('class', 'nav_bar');
@@ -253,7 +253,7 @@
         next.bind('mousedown touchstart', base.next);
         previous.bind('mousedown touchstart', base.previous);
         play_stop.bind('mousedown touchstart', base.play_stop);
-        AppCongif.navigation_init = true;
+        AppConfig.navigation_init = true;
       }
     };
 
@@ -268,15 +268,15 @@
     base.play_stop = function(event) {
       event.preventDefault();
 
-      if (!AppCongif.autoplay) {
-        AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
+      if (!AppConfig.autoplay) {
+        AppConfig.autoplay = true;
+        AppConfig.play = setInterval(base.moveToNextFrame, AppConfig.playSpeed);
         $(event.currentTarget).removeClass('nav_bar_play').addClass('nav_bar_stop');
       } else {
-        AppCongif.autoplay = false;
+        AppConfig.autoplay = false;
         $(event.currentTarget).removeClass('nav_bar_stop').addClass('nav_bar_play');
-        clearInterval(AppCongif.play);
-        AppCongif.play = null;
+        clearInterval(AppConfig.play);
+        AppConfig.play = null;
       }
     };
 
@@ -289,7 +289,7 @@
 
     base.next = function(event) {
       if (event) { event.preventDefault(); }
-      AppCongif.endFrame -= 5;
+      AppConfig.endFrame -= 5;
       base.refresh();
     };
 
@@ -301,7 +301,7 @@
      */
     base.previous = function(event) {
       if (event) { event.preventDefault(); }
-      AppCongif.endFrame += 5;
+      AppConfig.endFrame += 5;
       base.refresh();
     };
 
@@ -311,10 +311,10 @@
      *
      */
     base.play = function(speed) {
-      var _speed = speed || AppCongif.playSpeed;
-      if (!AppCongif.autoplay) {
-        AppCongif.autoplay = true;
-        AppCongif.play = setInterval(base.moveToNextFrame, _speed);
+      var _speed = speed || AppConfig.playSpeed;
+      if (!AppConfig.autoplay) {
+        AppConfig.autoplay = true;
+        AppConfig.play = setInterval(base.moveToNextFrame, _speed);
       }
     };
 
@@ -325,10 +325,10 @@
      */
 
     base.stop = function() {
-      if (AppCongif.autoplay) {
-        AppCongif.autoplay = false;
-        clearInterval(AppCongif.play);
-        AppCongif.play = null;
+      if (AppConfig.autoplay) {
+        AppConfig.autoplay = false;
+        clearInterval(AppConfig.play);
+        AppConfig.play = null;
       }
     };
 
@@ -339,10 +339,10 @@
      *
      */
     base.moveToNextFrame = function () {
-      if (AppCongif.autoplayDirection === 1) {
-        AppCongif.endFrame -= 1;
+      if (AppConfig.autoplayDirection === 1) {
+        AppConfig.endFrame -= 1;
       } else {
-        AppCongif.endFrame += 1;
+        AppConfig.endFrame += 1;
       }
       base.refresh();
     };
@@ -354,44 +354,44 @@
      *
      */
     base.gotoAndPlay = function (n) {
-      if( AppCongif.disableWrap ) {
-        AppCongif.endFrame = n;
+      if( AppConfig.disableWrap ) {
+        AppConfig.endFrame = n;
         base.refresh();
       } else {
         // Since we could be looped around grab the multiplier
-        var multiplier = Math.ceil(AppCongif.endFrame / AppCongif.totalFrames);
+        var multiplier = Math.ceil(AppConfig.endFrame / AppConfig.totalFrames);
         if(multiplier === 0) {
           multiplier = 1;
         }
 
         // Figure out the quickest path to the requested frame
         var realEndFrame = (multiplier > 1) ?
-          AppCongif.endFrame - ((multiplier - 1) * AppCongif.totalFrames) :
-          AppCongif.endFrame;
+          AppConfig.endFrame - ((multiplier - 1) * AppConfig.totalFrames) :
+          AppConfig.endFrame;
 
-        var currentFromEnd = AppCongif.totalFrames - realEndFrame;
+        var currentFromEnd = AppConfig.totalFrames - realEndFrame;
 
         // Jump past end if it's faster
         var newEndFrame = 0;
         if(n - realEndFrame > 0) {
           // Faster to move the difference ahead?
-          if(n - realEndFrame < realEndFrame + (AppCongif.totalFrames - n)) {
-            newEndFrame = AppCongif.endFrame + (n - realEndFrame);
+          if(n - realEndFrame < realEndFrame + (AppConfig.totalFrames - n)) {
+            newEndFrame = AppConfig.endFrame + (n - realEndFrame);
           } else {
-            newEndFrame = AppCongif.endFrame - (realEndFrame + (AppCongif.totalFrames - n));
+            newEndFrame = AppConfig.endFrame - (realEndFrame + (AppConfig.totalFrames - n));
           }
         } else {
             // Faster to move the distance back?
             if(realEndFrame - n < currentFromEnd + n) {
-              newEndFrame = AppCongif.endFrame - (realEndFrame - n);
+              newEndFrame = AppConfig.endFrame - (realEndFrame - n);
             } else {
-              newEndFrame = AppCongif.endFrame + (currentFromEnd + n);
+              newEndFrame = AppConfig.endFrame + (currentFromEnd + n);
             }
         }
 
         // Now set the end frame
         if(realEndFrame !== n) {
-          AppCongif.endFrame = newEndFrame;
+          AppConfig.endFrame = newEndFrame;
           base.refresh();
         }
       }
@@ -410,18 +410,18 @@
         event.preventDefault();
 
         if ((event.type === 'mousedown' && event.which === 1) || event.type === 'touchstart') {
-          AppCongif.pointerStartPosX = base.getPointerEvent(event).pageX;
-          AppCongif.dragging = true;
+          AppConfig.pointerStartPosX = base.getPointerEvent(event).pageX;
+          AppConfig.dragging = true;
         } else if (event.type === 'touchmove') {
           base.trackPointer(event);
         } else if (event.type === 'touchend') {
-          AppCongif.dragging = false;
+          AppConfig.dragging = false;
         }
       });
 
       $(document).bind('mouseup', function (event) {
         //event.preventDefault();
-        AppCongif.dragging = false;
+        AppConfig.dragging = false;
         $(this).css('cursor', 'none');
       });
 
@@ -430,13 +430,13 @@
       });
 
       $(document).bind('mousemove', function (event) {
-        if (AppCongif.dragging) {
+        if (AppConfig.dragging) {
           event.preventDefault();
-          if(!base.browser.isIE && AppCongif.showCursor) {
+          if(!base.browser.isIE && AppConfig.showCursor) {
             base.$el.css('cursor', 'url(assets/images/hand_closed.png), auto');
           }
         } else {
-          if(!base.browser.isIE && AppCongif.showCursor) {
+          if(!base.browser.isIE && AppConfig.showCursor) {
             base.$el.css('cursor', 'url(assets/images/hand_open.png), auto');
           }
         }
@@ -468,23 +468,23 @@
      * @params {Object} [event]
      */
     base.trackPointer = function (event) {
-      if (AppCongif.ready && AppCongif.dragging) {
-        AppCongif.pointerEndPosX = base.getPointerEvent(event).pageX;
-        if (AppCongif.monitorStartTime < new Date().getTime() - AppCongif.monitorInt) {
-          AppCongif.pointerDistance = AppCongif.pointerEndPosX - AppCongif.pointerStartPosX;
-          if(AppCongif.pointerDistance > 0){
-          AppCongif.endFrame = AppCongif.currentFrame + Math.ceil((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+      if (AppConfig.ready && AppConfig.dragging) {
+        AppConfig.pointerEndPosX = base.getPointerEvent(event).pageX;
+        if (AppConfig.monitorStartTime < new Date().getTime() - AppConfig.monitorInt) {
+          AppConfig.pointerDistance = AppConfig.pointerEndPosX - AppConfig.pointerStartPosX;
+          if(AppConfig.pointerDistance > 0){
+          AppConfig.endFrame = AppConfig.currentFrame + Math.ceil((AppConfig.totalFrames - 1) * AppConfig.speedMultiplier * (AppConfig.pointerDistance / base.$el.width()));
           }else{
-          AppCongif.endFrame = AppCongif.currentFrame + Math.floor((AppCongif.totalFrames - 1) * AppCongif.speedMultiplier * (AppCongif.pointerDistance / base.$el.width()));
+          AppConfig.endFrame = AppConfig.currentFrame + Math.floor((AppConfig.totalFrames - 1) * AppConfig.speedMultiplier * (AppConfig.pointerDistance / base.$el.width()));
           }
 
-          if( AppCongif.disableWrap ) {
-            AppCongif.endFrame = Math.min(AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0), AppCongif.endFrame);
-            AppCongif.endFrame = Math.max((AppCongif.zeroBased ? 0 : 1), AppCongif.endFrame);
+          if( AppConfig.disableWrap ) {
+            AppConfig.endFrame = Math.min(AppConfig.totalFrames - (AppConfig.zeroBased ? 1 : 0), AppConfig.endFrame);
+            AppConfig.endFrame = Math.max((AppConfig.zeroBased ? 0 : 1), AppConfig.endFrame);
           }
           base.refresh();
-          AppCongif.monitorStartTime = new Date().getTime();
-          AppCongif.pointerStartPosX = base.getPointerEvent(event).pageX;
+          AppConfig.monitorStartTime = new Date().getTime();
+          AppConfig.pointerStartPosX = base.getPointerEvent(event).pageX;
         }
       }
     };
@@ -497,8 +497,8 @@
      */
 
     base.refresh = function () {
-      if (AppCongif.ticker === 0) {
-        AppCongif.ticker = setInterval(base.render, Math.round(1000 / AppCongif.framerate));
+      if (AppConfig.ticker === 0) {
+        AppConfig.ticker = setInterval(base.render, Math.round(1000 / AppConfig.framerate));
       }
     };
 
@@ -510,15 +510,15 @@
 
     base.render = function () {
       var frameEasing;
-      if (AppCongif.currentFrame !== AppCongif.endFrame) {
-        frameEasing = AppCongif.endFrame < AppCongif.currentFrame ? Math.floor((AppCongif.endFrame - AppCongif.currentFrame) * 0.1) : Math.ceil((AppCongif.endFrame - AppCongif.currentFrame) * 0.1);
+      if (AppConfig.currentFrame !== AppConfig.endFrame) {
+        frameEasing = AppConfig.endFrame < AppConfig.currentFrame ? Math.floor((AppConfig.endFrame - AppConfig.currentFrame) * 0.1) : Math.ceil((AppConfig.endFrame - AppConfig.currentFrame) * 0.1);
         base.hidePreviousFrame();
-        AppCongif.currentFrame += frameEasing;
+        AppConfig.currentFrame += frameEasing;
         base.showCurrentFrame();
-        base.$el.trigger('frameIndexChanged', [base.getNormalizedCurrentFrame(), AppCongif.totalFrames]);
+        base.$el.trigger('frameIndexChanged', [base.getNormalizedCurrentFrame(), AppConfig.totalFrames]);
       } else {
-        window.clearInterval(AppCongif.ticker);
-        AppCongif.ticker = 0;
+        window.clearInterval(AppConfig.ticker);
+        AppConfig.ticker = 0;
       }
     };
 
@@ -550,18 +550,18 @@
     base.getNormalizedCurrentFrame = function () {
       var c, e;
 
-      if ( !AppCongif.disableWrap ) {
-        c = Math.ceil(AppCongif.currentFrame % AppCongif.totalFrames);
+      if ( !AppConfig.disableWrap ) {
+        c = Math.ceil(AppConfig.currentFrame % AppConfig.totalFrames);
         if (c < 0) {
-          c += AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0);
+          c += AppConfig.totalFrames - (AppConfig.zeroBased ? 1 : 0);
         }
       } else {
-        c = Math.min(AppCongif.currentFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
-        e = Math.min(AppCongif.endFrame, AppCongif.totalFrames - (AppCongif.zeroBased ? 1 : 0));
-        c = Math.max(c, (AppCongif.zeroBased ? 0 : 1));
-        e = Math.max(e, (AppCongif.zeroBased ? 0 : 1));
-        AppCongif.currentFrame = c;
-        AppCongif.endFrame = e;
+        c = Math.min(AppConfig.currentFrame, AppConfig.totalFrames - (AppConfig.zeroBased ? 1 : 0));
+        e = Math.min(AppConfig.endFrame, AppConfig.totalFrames - (AppConfig.zeroBased ? 1 : 0));
+        c = Math.max(c, (AppConfig.zeroBased ? 0 : 1));
+        e = Math.max(e, (AppConfig.zeroBased ? 0 : 1));
+        AppConfig.currentFrame = c;
+        AppConfig.endFrame = e;
       }
 
       return c;
@@ -575,7 +575,7 @@
      */
 
     base.getCurrentFrame = function() {
-      return AppCongif.currentFrame;
+      return AppConfig.currentFrame;
     };
 
     /*
@@ -585,7 +585,7 @@
     */
 
     base.responsive = function() {
-      if(AppCongif.responsive) {
+      if(AppConfig.responsive) {
         base.$el.css({
           height: base.$el.find('.current-image').first().css('height'),
           width: '100%'
@@ -599,7 +599,7 @@
     base.zeroPad = function (num) {
         function pad(number, length) {
           var str = number.toString();
-          if(AppCongif.zeroPadding) {
+          if(AppConfig.zeroPadding) {
             while (str.length < length) {
                 str = '0' + str;
             }
@@ -607,7 +607,7 @@
           return str;
         }
 
-        var approximateLog = Math.log(AppCongif.totalFrames) / Math.LN10;
+        var approximateLog = Math.log(AppConfig.totalFrames) / Math.LN10;
         var roundTo = 1e3;
         var roundedLog = Math.round(approximateLog * roundTo) / roundTo;
         var numChars = Math.floor(roundedLog) + 1;
@@ -647,7 +647,7 @@
      * @return Object
      */
     base.getConfig = function() {
-      return AppCongif;
+      return AppConfig;
     };
 
     $.ThreeSixty.defaultOptions = {

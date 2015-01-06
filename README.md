@@ -2,7 +2,7 @@
 
 
 
-Three Sixty Image slider plugin v2.0.4
+Three Sixty Image slider plugin v2.0.5
 =================
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/creativeaura/threesixty-slider/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
@@ -25,7 +25,7 @@ This is a jQuery plugin to create 360 degree product image slider. The plugin is
 Plugins
 ---------------------
 
-- [Drupal module](https://drupal.org/sandbox/coderider/2274229) by [Rashid Abdullah](https://drupal.org/u/coderider)  
+- [Drupal module](https://drupal.org/sandbox/coderider/2274229) by [Rashid Abdullah](https://drupal.org/u/coderider)
 
 Installation
 ---------------------

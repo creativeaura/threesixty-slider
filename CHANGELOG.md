@@ -1,3 +1,6 @@
+## 2.0.5 (Jan 6th, 2015)
+- Fixed typo for AppCongif . [Issue #59](https://github.com/creativeaura/threesixty-slider/issues/59)
+
 ## 2.0.4 (Jan 5th, 2015)
 - Fixed typo for AppCongif . [Issue #59](https://github.com/creativeaura/threesixty-slider/issues/59)
 
