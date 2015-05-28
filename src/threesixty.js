@@ -412,16 +412,18 @@
         if ((event.type === 'mousedown' && event.which === 1) || event.type === 'touchstart') {
           AppConfig.pointerStartPosX = base.getPointerEvent(event).pageX;
           AppConfig.dragging = true;
+          AppConfig.onDragStart(AppConfig.currentFrame);
         } else if (event.type === 'touchmove') {
           base.trackPointer(event);
         } else if (event.type === 'touchend') {
           AppConfig.dragging = false;
+          AppConfig.onDragStop(AppConfig.endFrame);
         }
       });
 
       $(document).bind('mouseup', function (event) {
-        //event.preventDefault();
         AppConfig.dragging = false;
+        AppConfig.onDragStop(AppConfig.endFrame);
         $(this).css('cursor', 'none');
       });
 
@@ -836,6 +838,16 @@
        * Callback triggers once all images are loaded and ready to render on the screen
        */
       onReady: function() {},
+      /**
+       * @cfg {Function} onDragStart
+       * Callback triggers when a user initiates dragging
+       */
+      onDragStart: function() {},
+      /**
+       * @cfg {Function} onDragStop
+       * Callback triggers when a user releases after dragging
+       */
+      onDragStop: function() {},
       /**
        * @cfg {String} imgList
        * Set ul element where image will be loaded
