@@ -310,8 +310,11 @@
      * You are start the auto rotaion for the slider with this function.
      *
      */
-    base.play = function(speed) {
+    base.play = function(speed, direction) {
       var _speed = speed || AppConfig.playSpeed;
+      var _direction = direction || AppConfig.autoplayDirection;
+      AppConfig.autoplayDirection = _direction
+
       if (!AppConfig.autoplay) {
         AppConfig.autoplay = true;
         AppConfig.play = setInterval(base.moveToNextFrame, _speed);
