@@ -158,6 +158,12 @@ Here are the list of config value you can pass in while you initilize your 360 s
   <tr>
       <td>onReady</td><td>function() {}</td><td>Function</td><td>Callback triggers once all images are loaded and ready to render on the screen</td>
     </tr>
+   <tr>
+    <td>playSpeed</td><td>100</td><td>Number</td><td>Value to control the speed (in milliseconds) of play button rotation</td>
+  </tr>
+  <tr>
+    <td>zeroBased</td><td>false</td><td>Boolean</td><td>Zero based for image filenames starting at 0</td>
+  </tr>
 </table>
 
 Demo
