@@ -17,11 +17,21 @@
 }
 .threesixty .threesixty_images img.previous-image {
   visibility: hidden;
-  width: 0;
+  /*
+           Do not put here any other styles.
+           It causes massive recalc / repaints and image flickering,
+           especially on Firefox.
+        */
+
 }
 .threesixty .threesixty_images img.current-image {
   visibility: visible;
-  width: 100%;
+  /*
+           Do not put here any other styles.
+           It causes massive recalc / repaints and image flickering,
+           especially on Firefox.
+        */
+
 }
 .threesixty .spinner {
   width: 60px;
