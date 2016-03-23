@@ -12,14 +12,22 @@
       top: 0;
       width: 100%;
       height: auto;
-    }
-    img.previous-image {
-      visibility: hidden;
-      width: 0;
-    }
-    img.current-image {
-      visibility: visible;
-      width: 100%;
+      &.previous-image{
+        visibility: hidden;
+        /*
+           Do not put here any other styles.
+           It causes massive recalc / repaints and image flickering,
+           especially on Firefox.
+        */
+      }
+      &.current-image{
+        visibility: visible;
+        /*
+           Do not put here any other styles.
+           It causes massive recalc / repaints and image flickering,
+           especially on Firefox.
+        */
+      }
     }
   }
   .spinner {
