@@ -1,3 +1,5 @@
+# Hello All, I am not maintaining this plugin anymore. 
+
 ![Three Sixty Image slider plugin](https://raw.github.com/creativeaura/threesixty-slider/master/assets/360.png)
 
 
